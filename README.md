@@ -1,5 +1,5 @@
 # AutoParser
-自动化Jons数据与Model互相解析 
+自动化Jons数据与Model互相解析 <br>
 一个NSObject Category类，only一个方法即可实现
 Josn与model互相转换，涉及到
 Josn与model数据：字典<-->模型
