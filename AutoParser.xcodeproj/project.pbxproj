@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF52ECE11D9370EC006E6B6F /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EF52ECE01D9370EC006E6B6F /* mock.json */; };
+		EF2D782B1D941A67003AC4BE /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EF2D782A1D941A67003AC4BE /* mock.json */; };
 		EFF4C2E81D8C02B6005655C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2E71D8C02B6005655C1 /* main.m */; };
 		EFF4C2EB1D8C02B6005655C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2EA1D8C02B6005655C1 /* AppDelegate.m */; };
 		EFF4C2EE1D8C02B6005655C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2ED1D8C02B6005655C1 /* ViewController.m */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		EF52ECE01D9370EC006E6B6F /* mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = mock.json; path = ../../mock.json; sourceTree = "<group>"; };
+		EF2D782A1D941A67003AC4BE /* mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		EFF4C2E31D8C02B6005655C1 /* AutoParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF4C2E71D8C02B6005655C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EFF4C2E91D8C02B6005655C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,7 +78,7 @@
 			children = (
 				EFF4C2FD1D8C0B3E005655C1 /* Category */,
 				EFF4C3071D8C2C13005655C1 /* Model */,
-				EF52ECE01D9370EC006E6B6F /* mock.json */,
+				EF2D782A1D941A67003AC4BE /* mock.json */,
 				EFF4C2E91D8C02B6005655C1 /* AppDelegate.h */,
 				EFF4C2EA1D8C02B6005655C1 /* AppDelegate.m */,
 				EFF4C2EC1D8C02B6005655C1 /* ViewController.h */,
@@ -186,7 +186,7 @@
 				EFF4C2F61D8C02B6005655C1 /* LaunchScreen.storyboard in Resources */,
 				EFF4C2F31D8C02B6005655C1 /* Assets.xcassets in Resources */,
 				EFF4C2F11D8C02B6005655C1 /* Main.storyboard in Resources */,
-				EF52ECE11D9370EC006E6B6F /* mock.json in Resources */,
+				EF2D782B1D941A67003AC4BE /* mock.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,0 +1,26 @@
+{
+  "statuses": [
+    {
+      "user": {
+        "gay": false,
+        "age": 0,
+        "sex": 0,
+        "name": "Jack",
+        "height": "",
+        "avatar": "lufy.png"
+      },
+      "text": "今天的心情不错！",
+      "retweetedStatus": {
+      }
+    }
+  ],
+  "totalNumber": 2016,
+  "previousCursor": 13476589,
+  "ads": [
+    {
+      "image": "ad.png",
+      "url": "http://www.ad.com"
+    }
+  ],
+  "nextCursor": 13476599
+}
