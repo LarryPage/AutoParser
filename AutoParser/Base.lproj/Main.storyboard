@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-0E-6BH">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="UZ1-sN-vcm"/>
+                                    <constraint firstAttribute="width" constant="200" id="fB1-vD-hVA"/>
+                                </constraints>
+                                <state key="normal" title="模型定义-&gt;属性字典">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="propertiesOfModelBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dRQ-Ho-fgO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuK-BZ-JVg">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="50I-HE-BNC"/>
+                                    <constraint firstAttribute="height" constant="50" id="TO3-CM-71z"/>
+                                </constraints>
+                                <state key="normal" title="字典--&gt;模型">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dic2modelBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eKM-hB-VrY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IS7-4s-RT9">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ggr-Dg-b41"/>
+                                    <constraint firstAttribute="width" constant="150" id="u9F-DZ-cOF"/>
+                                </constraints>
+                                <state key="normal" title="模型--&gt;字典">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="model2dicBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jff-oc-C0a"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ine-Ge-ffq">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="I6J-t8-Bhr"/>
+                                    <constraint firstAttribute="width" constant="150" id="crG-BN-MSE"/>
+                                </constraints>
+                                <state key="normal" title="模型--&gt;json">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="model2jsonBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="826-5O-FVP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exj-Pk-jEB">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="2yq-uA-bdK"/>
+                                    <constraint firstAttribute="height" constant="50" id="8iM-g5-RID"/>
+                                </constraints>
+                                <state key="normal" title="json文件--&gt;模型">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="json2modelBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0oL-VJ-reJ"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ine-Ge-ffq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="4jO-3r-wS7"/>
+                            <constraint firstItem="exj-Pk-jEB" firstAttribute="top" secondItem="Lqs-0E-6BH" secondAttribute="bottom" constant="50" id="5J1-XM-4jR"/>
+                            <constraint firstItem="PuK-BZ-JVg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="D8V-0x-PvM"/>
+                            <constraint firstItem="Lqs-0E-6BH" firstAttribute="bottom" secondItem="ine-Ge-ffq" secondAttribute="top" constant="-50" id="KpF-ro-hV3"/>
+                            <constraint firstItem="IS7-4s-RT9" firstAttribute="bottom" secondItem="Lqs-0E-6BH" secondAttribute="top" constant="-50" id="OaF-4m-Ogh"/>
+                            <constraint firstItem="Lqs-0E-6BH" firstAttribute="top" secondItem="PuK-BZ-JVg" secondAttribute="bottom" constant="50" id="VBI-AA-eAm"/>
+                            <constraint firstItem="Lqs-0E-6BH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jAY-vl-3PT"/>
+                            <constraint firstItem="exj-Pk-jEB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="jeB-8Q-mq7"/>
+                            <constraint firstItem="IS7-4s-RT9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="m3y-Ei-VGV"/>
+                            <constraint firstItem="Lqs-0E-6BH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mUO-hT-bzR"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-79.200000000000003" y="119.1904047976012"/>
+        </scene>
+    </scenes>
+</document>
