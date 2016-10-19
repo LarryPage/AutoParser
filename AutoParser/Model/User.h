@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol User <NSObject>
-@end
-
 /** 用户模型 */
 @interface User : NSObject
 
