@@ -29,7 +29,9 @@
 - (NSDictionary *)dic{
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[super dic]];
     [dic removeObjectForKey:@"icon"];
-    [dic setValue:self.icon forKey:@"avatar"];//key替换
+    if(self.icon != nil){
+        [dic setValue:self.icon forKey:@"avatar"];//key替换
+    }
     return dic;
 }
 
