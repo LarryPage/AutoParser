@@ -89,94 +89,136 @@ static NSMutableDictionary *gPropertiesOfClass = nil;
 + (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        if ([obj isEqualToString:NSStringFromClass([NSString class])] || [obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
-            id value=RKMapping([dic valueForKey:key]);
-            if ([value isKindOfClass:[NSString class]]) {
-                //value=(NSMutableString *)[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                [object setValue:value forKeyPath:key];
-            }
-            else if ([value isKindOfClass:[NSNumber class]]) {
-                [object setValue:[value stringValue] forKeyPath:key];
-            }
+        if ([obj isEqualToString:NSStringFromClass([NSString class])]) {
+            id value= [NSString safeStringFromObject:[dic valueForKey:key]];
+            [object setValue:value forKeyPath:key];
         }
-        else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])] || [obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
-            NSMutableDictionary *value=RKMapping([dic valueForKey:key]);
+        else if ([obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
+            id value=[NSMutableString safeStringFromObject:[dic valueForKey:key]];
+            //value=(NSMutableString *)[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            [object setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])]) {
+            id value=[NSDictionary safeDictionaryFromObject:[dic valueForKey:key]];
+            [object setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+            id value=[NSMutableDictionary safeDictionaryFromObject:[dic valueForKey:key]];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
-            id value=RKMapping([dic valueForKey:key]);
-            if ([value isKindOfClass:[NSNumber class]]) {
-                [object setValue:value forKeyPath:key];
-            }
-            else if ([value respondsToSelector:@selector(doubleValue)]) {
-                [object setValue:[NSNumber numberWithDouble:[value doubleValue]] forKeyPath:key];
-            }
+            id value=[NSNumber safeNumberFromObject:[dic valueForKey:key]];
+            [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG]]) {//NSInteger
-            NSInteger value=[RKMapping([dic valueForKey:key]) integerValue];
+            NSInteger value=[[NSString safeStringFromObject:[dic valueForKey:key]] integerValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_UINT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG]]) {//NSUInteger
-            NSUInteger value=[RKMapping([dic valueForKey:key]) integerValue];
+            NSUInteger value=[[NSString safeStringFromObject:[dic valueForKey:key]] integerValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_DBL]]) {//double
-            double value=[RKMapping([dic valueForKey:key]) doubleValue];
+            double value=[[NSString safeStringFromObject:[dic valueForKey:key]] doubleValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_FLT]]) {//float
-            float value=[RKMapping([dic valueForKey:key]) floatValue];
+            float value=[[NSString safeStringFromObject:[dic valueForKey:key]] floatValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]) {//int
-            int value=[RKMapping([dic valueForKey:key]) intValue];
+            int value=[[NSString safeStringFromObject:[dic valueForKey:key]] intValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_BOOL]]) {//bool,BOOL
-            bool value=[RKMapping([dic valueForKey:key]) boolValue];
+            bool value=[[NSString safeStringFromObject:[dic valueForKey:key]] boolValue];
             [object setValue:@(value) forKeyPath:key];
-        }
-        else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
         }
         else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
             NSMutableArray *value=[[NSMutableArray alloc] init];
             
-            NSMutableArray *records = RKMapping([dic valueForKey:key]);
+            NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:key]];
             for (NSObject *record in records) {
-                if (!record || ![record isKindOfClass:[NSObject class]]) {
-                    continue;
-                }
-                [value addObject:record];
+                [value safeAddObject:record];
+            }
+            
+            [object setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
+            NSMutableSet *value=[[NSMutableSet alloc] init];
+            
+            NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:key]];
+            for (NSObject *record in records) {
+                [value safeAddObject:record];
             }
             
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
+            NSMutableOrderedSet *value=[[NSMutableOrderedSet alloc] init];
+            
+            NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:key]];
+            for (NSObject *record in records) {
+                [value safeAddObject:record];
+            }
+            
+            [object setValue:value forKeyPath:key];
         }
         else{//自定义class
             NSRegularExpression *arrayRegExp=[[NSRegularExpression alloc] initWithPattern:@"(?<=\\<).*?(?=\\>)" options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray *results=[arrayRegExp matchesInString:obj options:NSMatchingWithTransparentBounds range:NSMakeRange(0, [obj length])];
             if (results.count>0) {
-                NSTextCheckingResult *result=results[0];
+                NSTextCheckingResult *result=[results safeObjectAtIndex:0];
                 NSRange range = result.range;
                 NSString *className = [[obj substringToIndex:range.location-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 NSString *recordClassName = [[obj substringWithRange:range] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                id recordClass = NSClassFromString(recordClassName);
                 if ([className isEqualToString:NSStringFromClass([NSArray class])] || [className isEqualToString:NSStringFromClass([NSMutableArray class])]) {
-                    id recordClass = NSClassFromString(recordClassName);
-                    
                     NSMutableArray *value=[[NSMutableArray alloc] init];
                     
-                    NSMutableArray *records = RKMapping([dic valueForKey:key]);
+                    NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:key]];
                     for (NSDictionary *record in records) {
                         if (!record || ![record isKindOfClass:[NSDictionary class]]) {
                             continue;
                         }
                         if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
-                            [value addObject:[[recordClass alloc] initWithDic:record]];
+                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
+                        }
+                    }
+                    
+                    [object setValue:value forKeyPath:key];
+                    return;
+                }
+                else if ([className isEqualToString:NSStringFromClass([NSSet class])] || [className isEqualToString:NSStringFromClass([NSMutableSet class])]) {
+                    NSMutableSet *value=[[NSMutableSet alloc] init];
+                    
+                    NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:key]];
+                    for (NSDictionary *record in records) {
+                        if (!record || ![record isKindOfClass:[NSDictionary class]]) {
+                            continue;
+                        }
+                        if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
+                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
+                        }
+                    }
+                    
+                    [object setValue:value forKeyPath:key];
+                    return;
+                }
+                else if ([className isEqualToString:NSStringFromClass([NSOrderedSet class])] || [className isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
+                    NSMutableOrderedSet *value=[[NSMutableOrderedSet alloc] init];
+                    
+                    NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:key]];
+                    for (NSDictionary *record in records) {
+                        if (!record || ![record isKindOfClass:[NSDictionary class]]) {
+                            continue;
+                        }
+                        if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
+                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
                         }
                     }
                     
@@ -197,15 +239,15 @@ static NSMutableDictionary *gPropertiesOfClass = nil;
     NSDictionary *propertysDic = [self propertiesOfObject:object];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         if ([obj isEqualToString:NSStringFromClass([NSString class])] || [obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
-            NSMutableString *value=[object valueForKeyPath:key];
+            id value=[object valueForKeyPath:key];
             [dic setValue:(value?value:@"") forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])] || [obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
-            NSMutableDictionary *value=[object valueForKeyPath:key];
+            id value=[object valueForKeyPath:key];
             [dic setValue:(value?value:[NSMutableDictionary dictionary]) forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
-            NSNumber *value=[object valueForKeyPath:key];
+            id value=[object valueForKeyPath:key];
             [dic setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG_LNG]]
@@ -236,37 +278,80 @@ static NSMutableDictionary *gPropertiesOfClass = nil;
             bool value=[[object valueForKeyPath:key] boolValue];
             [dic setValue:@(value) forKeyPath:key];
         }
-        else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
-        }
         else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
             NSMutableArray *value=[NSMutableArray array];
             
-            NSMutableArray *records=[object valueForKeyPath:key];
+            NSArray *records=[object valueForKeyPath:key];
             [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                 NSObject *record = (NSObject *)obj;
-                [value addObject:record];
+                [value safeAddObject:record];
+            }];
+            [dic setValue:value forKey:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
+            NSMutableSet *value=[NSMutableSet set];
+            
+            NSSet *records=[object valueForKeyPath:key];
+            [records enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+                NSObject *record = (NSObject *)obj;
+                [value safeAddObject:record];
             }];
             [dic setValue:value forKey:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
+            NSMutableOrderedSet *value=[NSMutableOrderedSet orderedSet];
+            
+            NSOrderedSet *records=[object valueForKeyPath:key];
+            [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSObject *record = (NSObject *)obj;
+                [value safeAddObject:record];
+            }];
+            [dic setValue:value forKey:key];
         }
         else{//自定义class
             NSRegularExpression *arrayRegExp=[[NSRegularExpression alloc] initWithPattern:@"(?<=\\<).*?(?=\\>)" options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray *results=[arrayRegExp matchesInString:obj options:NSMatchingWithTransparentBounds range:NSMakeRange(0, [obj length])];
             if (results.count>0) {
-                NSTextCheckingResult *result=results[0];
+                NSTextCheckingResult *result=[results safeObjectAtIndex:0];
                 NSRange range = result.range;
                 NSString *className = [[obj substringToIndex:range.location-1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                 NSString *recordClassName = [[obj substringWithRange:range] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                id recordClass = NSClassFromString(recordClassName);
                 if ([className isEqualToString:NSStringFromClass([NSArray class])] || [className isEqualToString:NSStringFromClass([NSMutableArray class])]) {
-                    id recordClass = NSClassFromString(recordClassName);
-                    
                     NSMutableArray *value=[NSMutableArray array];
                     
-                    NSMutableArray *records=[object valueForKeyPath:key];
+                    NSArray *records=[object valueForKeyPath:key];
                     [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
                         if([recordClass instancesRespondToSelector:@selector(dic)]){
-                            [value addObject:[obj dic]];
+                            [value safeAddObject:[obj dic]];
+                        }
+                        
+                    }];
+                    
+                    [dic setValue:value forKey:key];
+                    return;
+                }
+                else if ([className isEqualToString:NSStringFromClass([NSSet class])] || [className isEqualToString:NSStringFromClass([NSMutableSet class])]) {
+                    NSMutableSet *value=[NSMutableSet set];
+                    
+                    NSSet *records=[object valueForKeyPath:key];
+                    [records enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+                        if([recordClass instancesRespondToSelector:@selector(dic)]){
+                            [value safeAddObject:[obj dic]];
+                        }
+                        
+                    }];
+                    
+                    [dic setValue:value forKey:key];
+                    return;
+                }
+                else if ([className isEqualToString:NSStringFromClass([NSOrderedSet class])] || [className isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
+                    NSMutableOrderedSet *value=[NSMutableOrderedSet orderedSet];
+                    
+                    NSOrderedSet *records=[object valueForKeyPath:key];
+                    [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                        if([recordClass instancesRespondToSelector:@selector(dic)]){
+                            [value safeAddObject:[obj dic]];
                         }
                         
                     }];

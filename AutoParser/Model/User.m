@@ -20,17 +20,23 @@
 //    return self;
 //}
 
+/**
+*  nativePropertyName and JosnKeyName are different ,replace them in initWithDic()
+*/
 - (id)initWithDic:(NSDictionary *)dic{
     self = [super initWithDic:dic];
-    self.icon = RKMapping(dic[@"avatar"]);//key替换
+    self.icon = [NSString safeStringFromObject:[dic objectForKey:@"avatar"]];//key替换
     return self;
 }
 
+/**
+ *  nativePropertyName and JosnKeyName are different ,replace them in dic()
+ */
 - (NSDictionary *)dic{
     NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[super dic]];
     [dic removeObjectForKey:@"icon"];
     if(self.icon != nil){
-        [dic setValue:self.icon forKey:@"avatar"];//key替换
+        [dic safeSetObject:self.icon forKey:@"avatar"];//key替换
     }
     return dic;
 }

@@ -30,6 +30,7 @@
  NSDictionary * NSMutableDictionary *
  NSArray * NSMutableArray *
  NSSet * NSMutableSet *
+ NSOrderedSet * NSMutableOrderedSet *
  
  and 自定义model类
  */

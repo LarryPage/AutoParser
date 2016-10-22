@@ -8,6 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		EF2D782B1D941A67003AC4BE /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EF2D782A1D941A67003AC4BE /* mock.json */; };
+		EF6131291DBB187F006F5004 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131081DBB187F006F5004 /* NSArray+Safe.m */; };
+		EF61312B1DBB187F006F5004 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61310C1DBB187F006F5004 /* NSMutableArray+Safe.m */; };
+		EF61312D1DBB187F006F5004 /* NSDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131121DBB187F006F5004 /* NSDictionary+Safe.m */; };
+		EF61312E1DBB187F006F5004 /* NSMutableDictionary+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131141DBB187F006F5004 /* NSMutableDictionary+Safe.m */; };
+		EF61312F1DBB187F006F5004 /* NSManagedObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131171DBB187F006F5004 /* NSManagedObject+Safe.m */; };
+		EF6131301DBB187F006F5004 /* NSNumber+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61311A1DBB187F006F5004 /* NSNumber+Safe.m */; };
+		EF6131311DBB187F006F5004 /* NSObject+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61311D1DBB187F006F5004 /* NSObject+Safe.m */; };
+		EF6131321DBB187F006F5004 /* NSMutableSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131201DBB187F006F5004 /* NSMutableSet+Safe.m */; };
+		EF6131331DBB187F006F5004 /* NSString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131231DBB187F006F5004 /* NSString+Safe.m */; };
+		EF6131351DBB187F006F5004 /* NSUserDefaults+safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131281DBB187F006F5004 /* NSUserDefaults+safe.m */; };
+		EF6131391DBB1BC2006F5004 /* NSArray+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131381DBB1BC2006F5004 /* NSArray+Add.m */; };
+		EF61313C1DBB2857006F5004 /* NSData+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61313B1DBB2857006F5004 /* NSData+Add.m */; };
+		EF61313F1DBB2EEB006F5004 /* NSString+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61313E1DBB2EEB006F5004 /* NSString+Add.m */; };
+		EF6131421DBB55ED006F5004 /* NSMutableString+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131411DBB55ED006F5004 /* NSMutableString+Safe.m */; };
+		EF6131491DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131481DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.m */; };
+		EF61314C1DBB63E1006F5004 /* NSSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61314B1DBB63E1006F5004 /* NSSet+Safe.m */; };
+		EF61314F1DBB689D006F5004 /* NSOrderedSet+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61314E1DBB689D006F5004 /* NSOrderedSet+Safe.m */; };
 		EFF4C2E81D8C02B6005655C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2E71D8C02B6005655C1 /* main.m */; };
 		EFF4C2EB1D8C02B6005655C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2EA1D8C02B6005655C1 /* AppDelegate.m */; };
 		EFF4C2EE1D8C02B6005655C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF4C2ED1D8C02B6005655C1 /* ViewController.m */; };
@@ -23,6 +40,41 @@
 
 /* Begin PBXFileReference section */
 		EF2D782A1D941A67003AC4BE /* mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
+		EF6131071DBB187F006F5004 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
+		EF6131081DBB187F006F5004 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
+		EF61310B1DBB187F006F5004 /* NSMutableArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Safe.h"; sourceTree = "<group>"; };
+		EF61310C1DBB187F006F5004 /* NSMutableArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Safe.m"; sourceTree = "<group>"; };
+		EF6131111DBB187F006F5004 /* NSDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Safe.h"; sourceTree = "<group>"; };
+		EF6131121DBB187F006F5004 /* NSDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Safe.m"; sourceTree = "<group>"; };
+		EF6131131DBB187F006F5004 /* NSMutableDictionary+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+Safe.h"; sourceTree = "<group>"; };
+		EF6131141DBB187F006F5004 /* NSMutableDictionary+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+Safe.m"; sourceTree = "<group>"; };
+		EF6131161DBB187F006F5004 /* NSManagedObject+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+Safe.h"; sourceTree = "<group>"; };
+		EF6131171DBB187F006F5004 /* NSManagedObject+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+Safe.m"; sourceTree = "<group>"; };
+		EF6131191DBB187F006F5004 /* NSNumber+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Safe.h"; sourceTree = "<group>"; };
+		EF61311A1DBB187F006F5004 /* NSNumber+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Safe.m"; sourceTree = "<group>"; };
+		EF61311C1DBB187F006F5004 /* NSObject+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Safe.h"; sourceTree = "<group>"; };
+		EF61311D1DBB187F006F5004 /* NSObject+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Safe.m"; sourceTree = "<group>"; };
+		EF61311F1DBB187F006F5004 /* NSMutableSet+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableSet+Safe.h"; sourceTree = "<group>"; };
+		EF6131201DBB187F006F5004 /* NSMutableSet+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableSet+Safe.m"; sourceTree = "<group>"; };
+		EF6131221DBB187F006F5004 /* NSString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Safe.h"; sourceTree = "<group>"; };
+		EF6131231DBB187F006F5004 /* NSString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Safe.m"; sourceTree = "<group>"; };
+		EF6131271DBB187F006F5004 /* NSUserDefaults+safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+safe.h"; sourceTree = "<group>"; };
+		EF6131281DBB187F006F5004 /* NSUserDefaults+safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+safe.m"; sourceTree = "<group>"; };
+		EF6131361DBB18A5006F5004 /* SafeCategories.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeCategories.h; sourceTree = "<group>"; };
+		EF6131371DBB1BC2006F5004 /* NSArray+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Add.h"; sourceTree = "<group>"; };
+		EF6131381DBB1BC2006F5004 /* NSArray+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Add.m"; sourceTree = "<group>"; };
+		EF61313A1DBB2857006F5004 /* NSData+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Add.h"; sourceTree = "<group>"; };
+		EF61313B1DBB2857006F5004 /* NSData+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Add.m"; sourceTree = "<group>"; };
+		EF61313D1DBB2EEB006F5004 /* NSString+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Add.h"; sourceTree = "<group>"; };
+		EF61313E1DBB2EEB006F5004 /* NSString+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Add.m"; sourceTree = "<group>"; };
+		EF6131401DBB55ED006F5004 /* NSMutableString+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableString+Safe.h"; sourceTree = "<group>"; };
+		EF6131411DBB55ED006F5004 /* NSMutableString+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableString+Safe.m"; sourceTree = "<group>"; };
+		EF6131471DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableOrderedSet+Safe.h"; sourceTree = "<group>"; };
+		EF6131481DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableOrderedSet+Safe.m"; sourceTree = "<group>"; };
+		EF61314A1DBB63E1006F5004 /* NSSet+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+Safe.h"; sourceTree = "<group>"; };
+		EF61314B1DBB63E1006F5004 /* NSSet+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+Safe.m"; sourceTree = "<group>"; };
+		EF61314D1DBB689D006F5004 /* NSOrderedSet+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSOrderedSet+Safe.h"; sourceTree = "<group>"; };
+		EF61314E1DBB689D006F5004 /* NSOrderedSet+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSOrderedSet+Safe.m"; sourceTree = "<group>"; };
 		EFF4C2E31D8C02B6005655C1 /* AutoParser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoParser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF4C2E71D8C02B6005655C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EFF4C2E91D8C02B6005655C1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -57,6 +109,128 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EF6131051DBB187F006F5004 /* SafeCategories */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131061DBB187F006F5004 /* NSArray */,
+				EF61310D1DBB187F006F5004 /* NSData */,
+				EF6131101DBB187F006F5004 /* NSDictionary */,
+				EF6131151DBB187F006F5004 /* NSManagerObject */,
+				EF6131181DBB187F006F5004 /* NSNumber */,
+				EF61311B1DBB187F006F5004 /* NSObject */,
+				EF6131461DBB5D35006F5004 /* NSOrderedSet */,
+				EF61311E1DBB187F006F5004 /* NSSet */,
+				EF6131211DBB187F006F5004 /* NSString */,
+				EF6131261DBB187F006F5004 /* NSUserDefault */,
+				EF6131361DBB18A5006F5004 /* SafeCategories.h */,
+			);
+			path = SafeCategories;
+			sourceTree = "<group>";
+		};
+		EF6131061DBB187F006F5004 /* NSArray */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131071DBB187F006F5004 /* NSArray+Safe.h */,
+				EF6131081DBB187F006F5004 /* NSArray+Safe.m */,
+				EF6131371DBB1BC2006F5004 /* NSArray+Add.h */,
+				EF6131381DBB1BC2006F5004 /* NSArray+Add.m */,
+				EF61310B1DBB187F006F5004 /* NSMutableArray+Safe.h */,
+				EF61310C1DBB187F006F5004 /* NSMutableArray+Safe.m */,
+			);
+			path = NSArray;
+			sourceTree = "<group>";
+		};
+		EF61310D1DBB187F006F5004 /* NSData */ = {
+			isa = PBXGroup;
+			children = (
+				EF61313A1DBB2857006F5004 /* NSData+Add.h */,
+				EF61313B1DBB2857006F5004 /* NSData+Add.m */,
+			);
+			path = NSData;
+			sourceTree = "<group>";
+		};
+		EF6131101DBB187F006F5004 /* NSDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131111DBB187F006F5004 /* NSDictionary+Safe.h */,
+				EF6131121DBB187F006F5004 /* NSDictionary+Safe.m */,
+				EF6131131DBB187F006F5004 /* NSMutableDictionary+Safe.h */,
+				EF6131141DBB187F006F5004 /* NSMutableDictionary+Safe.m */,
+			);
+			path = NSDictionary;
+			sourceTree = "<group>";
+		};
+		EF6131151DBB187F006F5004 /* NSManagerObject */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131161DBB187F006F5004 /* NSManagedObject+Safe.h */,
+				EF6131171DBB187F006F5004 /* NSManagedObject+Safe.m */,
+			);
+			path = NSManagerObject;
+			sourceTree = "<group>";
+		};
+		EF6131181DBB187F006F5004 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131191DBB187F006F5004 /* NSNumber+Safe.h */,
+				EF61311A1DBB187F006F5004 /* NSNumber+Safe.m */,
+			);
+			path = NSNumber;
+			sourceTree = "<group>";
+		};
+		EF61311B1DBB187F006F5004 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				EF61311C1DBB187F006F5004 /* NSObject+Safe.h */,
+				EF61311D1DBB187F006F5004 /* NSObject+Safe.m */,
+			);
+			path = NSObject;
+			sourceTree = "<group>";
+		};
+		EF61311E1DBB187F006F5004 /* NSSet */ = {
+			isa = PBXGroup;
+			children = (
+				EF61314A1DBB63E1006F5004 /* NSSet+Safe.h */,
+				EF61314B1DBB63E1006F5004 /* NSSet+Safe.m */,
+				EF61311F1DBB187F006F5004 /* NSMutableSet+Safe.h */,
+				EF6131201DBB187F006F5004 /* NSMutableSet+Safe.m */,
+			);
+			path = NSSet;
+			sourceTree = "<group>";
+		};
+		EF6131211DBB187F006F5004 /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131221DBB187F006F5004 /* NSString+Safe.h */,
+				EF6131231DBB187F006F5004 /* NSString+Safe.m */,
+				EF61313D1DBB2EEB006F5004 /* NSString+Add.h */,
+				EF61313E1DBB2EEB006F5004 /* NSString+Add.m */,
+				EF6131401DBB55ED006F5004 /* NSMutableString+Safe.h */,
+				EF6131411DBB55ED006F5004 /* NSMutableString+Safe.m */,
+			);
+			path = NSString;
+			sourceTree = "<group>";
+		};
+		EF6131261DBB187F006F5004 /* NSUserDefault */ = {
+			isa = PBXGroup;
+			children = (
+				EF6131271DBB187F006F5004 /* NSUserDefaults+safe.h */,
+				EF6131281DBB187F006F5004 /* NSUserDefaults+safe.m */,
+			);
+			path = NSUserDefault;
+			sourceTree = "<group>";
+		};
+		EF6131461DBB5D35006F5004 /* NSOrderedSet */ = {
+			isa = PBXGroup;
+			children = (
+				EF61314D1DBB689D006F5004 /* NSOrderedSet+Safe.h */,
+				EF61314E1DBB689D006F5004 /* NSOrderedSet+Safe.m */,
+				EF6131471DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.h */,
+				EF6131481DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.m */,
+			);
+			path = NSOrderedSet;
+			sourceTree = "<group>";
+		};
 		EFF4C2DA1D8C02B6005655C1 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +250,7 @@
 		EFF4C2E51D8C02B6005655C1 /* AutoParser */ = {
 			isa = PBXGroup;
 			children = (
+				EF6131051DBB187F006F5004 /* SafeCategories */,
 				EFF4C2FD1D8C0B3E005655C1 /* Category */,
 				EFF4C3071D8C2C13005655C1 /* Model */,
 				EF2D782A1D941A67003AC4BE /* mock.json */,
@@ -197,13 +372,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF61314F1DBB689D006F5004 /* NSOrderedSet+Safe.m in Sources */,
 				EFF4C2EE1D8C02B6005655C1 /* ViewController.m in Sources */,
+				EF6131351DBB187F006F5004 /* NSUserDefaults+safe.m in Sources */,
+				EF61313C1DBB2857006F5004 /* NSData+Add.m in Sources */,
 				EFF4C3101D8C2CCA005655C1 /* User.m in Sources */,
+				EF61312D1DBB187F006F5004 /* NSDictionary+Safe.m in Sources */,
+				EF6131311DBB187F006F5004 /* NSObject+Safe.m in Sources */,
+				EF61314C1DBB63E1006F5004 /* NSSet+Safe.m in Sources */,
+				EF6131291DBB187F006F5004 /* NSArray+Safe.m in Sources */,
 				EFF4C30D1D8C2C94005655C1 /* Status.m in Sources */,
+				EF6131321DBB187F006F5004 /* NSMutableSet+Safe.m in Sources */,
+				EF6131421DBB55ED006F5004 /* NSMutableString+Safe.m in Sources */,
 				EFF4C30A1D8C2C3E005655C1 /* StatusResult.m in Sources */,
+				EF61313F1DBB2EEB006F5004 /* NSString+Add.m in Sources */,
+				EF6131331DBB187F006F5004 /* NSString+Safe.m in Sources */,
+				EF61312B1DBB187F006F5004 /* NSMutableArray+Safe.m in Sources */,
+				EF6131391DBB1BC2006F5004 /* NSArray+Add.m in Sources */,
+				EF6131491DBB5D4B006F5004 /* NSMutableOrderedSet+Safe.m in Sources */,
 				EFF4C31A1D8C326B005655C1 /* Ad.m in Sources */,
+				EF61312E1DBB187F006F5004 /* NSMutableDictionary+Safe.m in Sources */,
 				EFF4C2EB1D8C02B6005655C1 /* AppDelegate.m in Sources */,
 				EFF4C2E81D8C02B6005655C1 /* main.m in Sources */,
+				EF61312F1DBB187F006F5004 /* NSManagedObject+Safe.m in Sources */,
+				EF6131301DBB187F006F5004 /* NSNumber+Safe.m in Sources */,
 				EFF4C3001D8C0B3E005655C1 /* NSObjectHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
