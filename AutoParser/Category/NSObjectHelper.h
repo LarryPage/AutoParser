@@ -27,11 +27,6 @@
  
  and 自定义model类
  */
-// notificationName (ClassName)CurRecordChanged
-// userInfo = NSDictionary {"newRecord":record, "oldRecord":record, "action":"add"|"delete"}
-// notificationName (ClassName)HistoryChanged
-// userInfo = NSDictionary {"record":record,"action":"add"|"delete"|"update"}
-
 @interface NSObject (KVC)
 
 - (id)initWithDic:(NSDictionary *)dic;
