@@ -3,13 +3,6 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-/** Josn解析，可参考RestKit */
-#define RKMapping(value) (value!=[NSNull null]?value:@"")
-
-@interface NSObject (Helper)
-- (id)performSelector:(SEL)selector withObjects:(NSArray *)objects;
-@end
-
 ///------------------------------
 /// @LiXiangCheng 20150327
 /// 实现 memoryDB->serializable files、sqlite3

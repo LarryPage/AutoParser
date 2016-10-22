@@ -5,34 +5,6 @@
 /** 缓存所有类的属性{"ClassName":propertiesDic}=Table scheme */
 static NSMutableDictionary *gPropertiesOfClass = nil;
 
-@implementation NSObject (Helper)
-
-/** NSObject提供 的performSelector最多只支持两个参数,针对NSObject增加了如下扩展 */
-- (id)performSelector:(SEL)selector withObjects:(NSArray *)objects {
-    NSMethodSignature *signature = [self methodSignatureForSelector:selector];
-    if (signature) {
-        NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setTarget:self];
-        [invocation setSelector:selector];
-        for(int i = 0; i < [objects count]; i++){
-            id object = [objects objectAtIndex:i];
-            [invocation setArgument:&object atIndex: (i + 2)];
-        }
-        [invocation invoke];
-        if (signature.methodReturnLength) {
-            id anObject;
-            [invocation getReturnValue:&anObject];
-            return anObject;
-        } else {
-            return nil;
-        }
-    } else {
-        return nil;
-    }
-}
-
-@end
-
 @implementation NSObject (KVC)
 
 - (id)initWithDic:(NSDictionary *)dic{
