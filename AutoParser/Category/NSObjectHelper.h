@@ -4,13 +4,14 @@
 #import <objc/runtime.h>
 
 ///------------------------------
-/// @LiXiangCheng 20150327
-/// 实现 memoryDB->serializable files、sqlite3
+/// @LiXiangCheng 20161022
+/// 实现 dictionary<->model josn<->model
+/// 使用 WDSafeCategories保证每条数据的有效
 ///------------------------------
 
 /**
- auto kvc :variable type
-
+ support :variable type
+ 
  double
  float
  int
@@ -24,7 +25,7 @@
  NSArray * NSMutableArray *
  NSSet * NSMutableSet *
  NSOrderedSet * NSMutableOrderedSet *
- 
+ ...
  and 自定义model类
  */
 @interface NSObject (KVC)
@@ -43,4 +44,6 @@
 + (NSDictionary *) propertiesOfClass:(Class)klass;
 + (NSDictionary *) propertiesOfSubclass:(Class)klass;
 
+#pragma mark override
+- (id)copyWithZone:(NSZone *)zone;
 @end

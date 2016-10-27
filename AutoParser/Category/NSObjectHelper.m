@@ -477,4 +477,69 @@ static const char *getPropertyType(objc_property_t property) {
     return properties;
 }
 
+#pragma mark override
+
+/**
+ * Implementation of NSCopying copyWithZone: method
+ */
+- (id)copyWithZone:(NSZone *)zone{
+    id copy=[[self class] new];
+    
+    NSDictionary *propertysDic = [[self class] propertiesOfObject:copy];
+    [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        if ([obj isEqualToString:NSStringFromClass([NSString class])] || [obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])] || [obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG_LNG]]
+                 || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_UINT]]
+                 || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG]]) {//NSUInteger
+            id value=[self valueForKeyPath:key];
+            [copy setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_DBL]]) {//double
+            id value=[self valueForKeyPath:key];
+            [copy setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_FLT]]) {//float
+            id value=[self valueForKeyPath:key];
+            [copy setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]) {//int
+            id value=[self valueForKeyPath:key];
+            [copy setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_BOOL]]) {//bool,BOOL
+            id value=[self valueForKeyPath:key];
+            [copy setValue:value forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+        else{//自定义class
+            id value=[self valueForKeyPath:key];
+            [copy setValue:[value copy] forKeyPath:key];
+        }
+    }];
+    
+    return copy;
+}
+
 @end
