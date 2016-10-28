@@ -96,7 +96,14 @@
                            };
     
     // 2.将字典转为StatusResult模型
+    long long timestamp = [[NSDate date] timeIntervalSince1970];
     StatusResult *record = [[StatusResult alloc] initWithDic:dic];
+//    StatusResult *record1 = [record copy];
+//    for (int i=0; i++; i<=30) {
+//        [[StatusResult alloc] initWithDic:dic];
+//    }
+    double gapTime = [[NSDate date] timeIntervalSince1970] - timestamp;
+    NSLog(@"解析时长:%@",@(gapTime));
     
     // 3.打印StatusResult模型的简单属性
     NSLog(@"totalNumber=%@, previousCursor=%@, nextCursor=%@", record.totalNumber, @(record.previousCursor), @(record.nextCursor));
@@ -197,6 +204,62 @@
     }
     
     // 5.打印ads数组中的模型属性
+    for (Ad *ad in record.ads) {
+        NSLog(@"image=%@, url=%@", ad.image, ad.url);
+    }
+}
+
+- (IBAction)modelSaveBtn:(id)sender{
+    // 1.新建模型
+    User *user = [[User alloc] init];
+    user.name = @"Jack";
+    user.icon = @"lufy.png";
+    
+    Status *status = [[Status alloc] init];
+    status.user = user;
+    status.text = @"今天的心情不错！";
+    
+    Ad *ad =[[Ad alloc] init];
+    ad.image=@"ad.png";
+    ad.url=@"http://www.ad.com";
+    
+    StatusResult *record=[[StatusResult alloc] init];
+    [record.statuses addObject:status];
+    [record.ads addObject:ad];
+    record.totalNumber=@2016;
+    record.previousCursor=13476589;
+    record.nextCursor=13476599;
+    
+    // 2.归档模型对象
+    // 2.1.获得Documents的全路径
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    // 2.2.获得文件的全路径
+    NSString *path = [doc stringByAppendingPathComponent:@"statusResult.data"];
+    // 2.3.将对象归档
+    [NSKeyedArchiver archiveRootObject:record toFile:path];
+}
+
+- (IBAction)modelReadBtn:(id)sender{
+    // 1.获得Documents的全路径
+    NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    // 2.获得文件的全路径
+    NSString *path = [doc stringByAppendingPathComponent:@"statusResult.data"];
+    
+    // 3.从文件中读取MJStudent对象
+    StatusResult *record = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+    
+    // 4.打印StatusResult模型的简单属性
+    NSLog(@"totalNumber=%@, previousCursor=%@, nextCursor=%@", record.totalNumber, @(record.previousCursor), @(record.nextCursor));
+    
+    // 5.打印statuses数组中的模型属性
+    for (Status *status in record.statuses) {
+        NSString *text = status.text;
+        NSString *name = status.user.name;
+        NSString *icon = status.user.icon;
+        NSLog(@"text=%@, name=%@, icon=%@", text, name, icon);
+    }
+    
+    // 6.打印ads数组中的模型属性
     for (Ad *ad in record.ads) {
         NSLog(@"image=%@, url=%@", ad.image, ad.url);
     }

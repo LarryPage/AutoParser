@@ -83,17 +83,47 @@
                                     <action selector="json2modelBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0oL-VJ-reJ"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izm-fV-SUG">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="ooe-qi-E6n"/>
+                                    <constraint firstAttribute="height" constant="50" id="pMl-FZ-7z4"/>
+                                </constraints>
+                                <state key="normal" title="模型序列化存储">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="modelSaveBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AWT-1o-lGq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkx-ft-FEv">
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="JAI-bR-Se4"/>
+                                    <constraint firstAttribute="width" constant="150" id="Rqh-lU-B7k"/>
+                                </constraints>
+                                <state key="normal" title="模型序列化读取">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="modelReadBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vS6-Vj-9tH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ine-Ge-ffq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="4jO-3r-wS7"/>
                             <constraint firstItem="exj-Pk-jEB" firstAttribute="top" secondItem="Lqs-0E-6BH" secondAttribute="bottom" constant="50" id="5J1-XM-4jR"/>
                             <constraint firstItem="PuK-BZ-JVg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-80" id="D8V-0x-PvM"/>
+                            <constraint firstItem="izm-fV-SUG" firstAttribute="top" secondItem="ine-Ge-ffq" secondAttribute="bottom" constant="20" id="DRT-jf-CfY"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="bottom" secondItem="ine-Ge-ffq" secondAttribute="top" constant="-50" id="KpF-ro-hV3"/>
+                            <constraint firstItem="izm-fV-SUG" firstAttribute="leading" secondItem="ine-Ge-ffq" secondAttribute="leading" id="MvB-fh-rR8"/>
                             <constraint firstItem="IS7-4s-RT9" firstAttribute="bottom" secondItem="Lqs-0E-6BH" secondAttribute="top" constant="-50" id="OaF-4m-Ogh"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="top" secondItem="PuK-BZ-JVg" secondAttribute="bottom" constant="50" id="VBI-AA-eAm"/>
+                            <constraint firstItem="xkx-ft-FEv" firstAttribute="leading" secondItem="exj-Pk-jEB" secondAttribute="leading" id="ipf-bn-IDl"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="jAY-vl-3PT"/>
                             <constraint firstItem="exj-Pk-jEB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="jeB-8Q-mq7"/>
+                            <constraint firstItem="xkx-ft-FEv" firstAttribute="top" secondItem="exj-Pk-jEB" secondAttribute="bottom" constant="20" id="kZr-Fw-Naf"/>
                             <constraint firstItem="IS7-4s-RT9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="m3y-Ei-VGV"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mUO-hT-bzR"/>
                         </constraints>

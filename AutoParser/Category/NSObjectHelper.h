@@ -2,11 +2,13 @@
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
+#import <objc/message.h>
 
 ///------------------------------
 /// @LiXiangCheng 20161022
 /// 实现 dictionary<->model josn<->model
-/// 使用 WDSafeCategories保证每条数据的有效
+/// 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】
+/// 使用 WDSafeCategories保证每条数据安全解析
 ///------------------------------
 
 /**
@@ -44,6 +46,10 @@
 + (NSDictionary *) propertiesOfClass:(Class)klass;
 + (NSDictionary *) propertiesOfSubclass:(Class)klass;
 
-#pragma mark override
+#pragma mark NSCoding
+- (void)encodeWithCoder:(NSCoder *)aCoder;
+- (id)initWithCoder:(NSCoder *)aDecoder;
+
+#pragma mark NSCopying
 - (id)copyWithZone:(NSZone *)zone;
 @end
