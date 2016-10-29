@@ -5,7 +5,7 @@
 
 ///------------------------------
 /// @LiXiangCheng 20161022
-/// 实现 dictionary<->model josn<->model
+/// 实现 dictionary<->model json<->model
 /// 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】
 /// 使用 WDSafeCategories保证每条数据安全解析
 ///------------------------------
