@@ -2,7 +2,7 @@
 
 #import "NSObjectHelper.h"
 
-/** 缓存所有类的属性{"ClassName":propertiesDic}=Table scheme */
+/** 缓存要解析的类的属性{"ClassName":propertiesDic}=Table scheme */
 static NSMutableDictionary *gPropertiesOfClass = nil;
 
 @implementation NSObject (KVC)
