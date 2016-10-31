@@ -2,8 +2,12 @@
 
 #import "NSObjectHelper.h"
 
-/** 缓存要解析的类的属性{"ClassName":propertiesDic}=Table scheme */
-static NSMutableDictionary *gPropertiesOfClass = nil;
+/**
+ 缓存要解析的类的属性{"ClassName":propertiesDic}=Table scheme
+ countLimit=500
+ 最大缓存500个Model定义
+ */
+static NSCache *gPropertiesOfClass = nil;
 
 @implementation NSObject (KVC)
 
@@ -412,16 +416,18 @@ static const char *getPropertyType(objc_property_t property) {
 {
     //memory缓存
     if (!gPropertiesOfClass) {
-        gPropertiesOfClass = [[NSMutableDictionary alloc] init];
+        gPropertiesOfClass = [[NSCache alloc] init];
+        gPropertiesOfClass.name=@"AutuParser.PropertiesOfClass";
+        gPropertiesOfClass.countLimit=500;
     }
-    NSMutableDictionary * properties=[gPropertiesOfClass valueForKey:NSStringFromClass(klass)];
+    NSMutableDictionary * properties=[gPropertiesOfClass objectForKey:NSStringFromClass(klass)];
     if (properties && properties.count>0) {
     }
     else{
         properties = [NSMutableDictionary dictionary];
         [self propertiesForHierarchyOfClass:klass onDictionary:properties];
         //CLog(@"%@:%@",NSStringFromClass(class),properties);
-        [gPropertiesOfClass setValue:properties forKey:NSStringFromClass(klass)];
+        [gPropertiesOfClass setObject:properties forKey:NSStringFromClass(klass)];
     }
     return properties;
     
