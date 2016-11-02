@@ -237,6 +237,7 @@
     NSString *path = [doc stringByAppendingPathComponent:@"statusResult.data"];
     // 2.3.将对象归档
     [NSKeyedArchiver archiveRootObject:record toFile:path];
+    NSLog(@"对象已归档!!!!!!!");
 }
 
 - (IBAction)modelReadBtn:(id)sender{
