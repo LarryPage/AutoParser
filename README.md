@@ -5,6 +5,9 @@ Josn与model互相转换，涉及到 <br>
 Josn与model数据：字典<-->模型 <br>
 Model层级嵌套：Model中属性为数组，NSArray中每个元素为另一model（字典数组<-->模型数组） <br>
 Josn层级嵌套，Mode对象josn化 <br>
+最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K <br>
+实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
+使用 WDSafeCategories保证每条数据安全解析 <br>
 
 用例： <br>
 1.模型定义->属性字典 <br>
