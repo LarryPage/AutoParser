@@ -5,6 +5,7 @@
 
 ///------------------------------
 /// @LiXiangCheng 20161022
+/// 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K
 /// 实现 dictionary<->model json<->model
 /// 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】
 /// 使用 WDSafeCategories保证每条数据安全解析
@@ -39,7 +40,6 @@
 + (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic;
 + (void)KeyValueEncoderForObject:(id)object dic:(NSDictionary *)dic;
 
-+ (NSDictionary *)classPropsFor:(Class)klass;
 //recursive
 + (NSDictionary *) propertiesOfObject:(id)object;
 + (NSDictionary *) propertiesOfClass:(Class)klass;

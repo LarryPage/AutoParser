@@ -347,9 +347,7 @@ static NSCache *gPropertiesOfClass = nil;
 }
 
 //http://stackoverflow.com/questions/754824/get-an-object-properties-list-in-objective-c
-static const char *getPropertyType(objc_property_t property) {
-    const char *attributes = property_getAttributes(property);
-    //printf("attributes=%s\n", attributes);
+static const char *getPropertyType(const char *attributes) {
     char buffer[1 + strlen(attributes)];
     strcpy(buffer, attributes);
     char *state = buffer, *attribute;
@@ -377,32 +375,6 @@ static const char *getPropertyType(objc_property_t property) {
         }
     }
     return "";
-}
-
-+ (NSDictionary *)classPropsFor:(Class)klass
-{
-    if (klass == NULL) {
-        return nil;
-    }
-    
-    NSMutableDictionary *results = [NSMutableDictionary dictionary];
-    
-    unsigned int outCount, i;
-    objc_property_t *properties = class_copyPropertyList(klass, &outCount);
-    for (i = 0; i < outCount; i++) {
-        objc_property_t property = properties[i];
-        const char *propName = property_getName(property);
-        if(propName) {
-            const char *propType = getPropertyType(property);
-            NSString *propertyName = [NSString stringWithUTF8String:propName];
-            NSString *propertyType = [NSString stringWithUTF8String:propType];
-            [results setObject:propertyType forKey:propertyName];
-        }
-    }
-    free(properties);
-    
-    // returning a copy here to make sure the dictionary is immutable
-    return [NSDictionary dictionaryWithDictionary:results];
 }
 
 //recursive
@@ -472,10 +444,19 @@ static const char *getPropertyType(objc_property_t property) {
         objc_property_t property = objcProperties[i];
         const char *propName = property_getName(property);
         if(propName) {
-            const char *propType = getPropertyType(property);
-            NSString *propertyName = [NSString stringWithUTF8String:propName];
-            NSString *propertyType = [NSString stringWithUTF8String:propType];
-            [properties setObject:propertyType forKey:propertyName];
+            const char *attributes = property_getAttributes(property);
+            //printf("attributes=%s\n", attributes);
+            NSArray *attrs = [@(attributes) componentsSeparatedByString:@","];
+            if (attrs.count>1) {
+                NSString *propRight=attrs[1];//C:copy &:retain|readWrite R:readonly N:nonatomic
+                if (![propRight isEqualToString:@"R"]) {
+                    const char *propType = getPropertyType(attributes);
+                    NSString *propertyName = [NSString stringWithUTF8String:propName];
+                    NSString *propertyType = [NSString stringWithUTF8String:propType];
+                    [properties setObject:propertyType forKey:propertyName];
+                }
+            }
+            
         }
     }
     free(objcProperties);
