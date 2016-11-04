@@ -11,6 +11,7 @@
 
 ///------------------------------
 /// @LiXiangCheng 20161022
+/// GitHub:https://github.com/LarryPage/AutoParser
 /// 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K
 /// 实现 dictionary<->model json<->model
 /// 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】
