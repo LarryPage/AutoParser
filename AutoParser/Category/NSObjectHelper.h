@@ -1,4 +1,10 @@
-
+//
+//  NSObject+AutoParser.h
+//  AutoParser
+//
+//  Created by LiXiangCheng on 16/9/16.
+//  Copyright (c) 2016年 Wanda Inc All rights reserved.
+//
 
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
