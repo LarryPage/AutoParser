@@ -9,12 +9,14 @@ Josn层级嵌套，Mode对象josn化 <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
 
-用例： <br>
-1.模型定义->属性字典 <br>
+项目用例： <br>
+1.model定义->属性字典 <br>
 2.复杂的字典 -> 模型 (模型的数组属性里面又装着模型) <br>
 3.模型 (模型的数组属性里面又装着模型) -> 复杂的字典 <br>
 4.模型 (模型的数组属性里面又装着模型) -> json字符串 <br>
 5.json文件 -> 模型 (模型的数组属性里面又装着模型)  用于mock <br>
+6.model存储序列化文件 <br>
+7.序列化文件读取model <br>
 
 
 AutoParser + JOSN2MODEL实现自动化解析流程
@@ -25,12 +27,15 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
 ```
+NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
+
 ModelClass *record=[[ModelClass alloc] initWithDic:response[@"data"]];//dic转model
 NSDictionary *dic=[record dic];//model转dic
+
 ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
 NSString *jsonString=[record json];//model转json字符串
-(NSDictionary *)replacedKeyMap;//类方法,在propertyName与josnKeyName不一致时，要设置类函数,返回replacedKeyMap：{propertyName:jsonKeyName},用例：
 
+(NSDictionary *)replacedKeyMap;//类方法,在propertyName与josnKeyName不一致时，要设置类函数,返回replacedKeyMap：{propertyName:jsonKeyName},用例：
 + (NSDictionary *)replacedKeyMap{ 
     NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
@@ -41,5 +46,4 @@ NSString *jsonString=[record json];//model转json字符串
 * ModelClass *copy=[record copy];//支持model NSCoding
 * [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
 * ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
-* NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
 ```
