@@ -26,7 +26,6 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 * 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法，若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
-![alt tag](https://github.com/LarryPage/AutoParser/blob/master/screen003.png)
 ```
 ModelClass *record=[[ModelClass alloc] initWithDic:response[@"data"]];//dic转model
 NSDictionary *dic=[record dic];//model转dic
