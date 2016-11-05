@@ -21,21 +21,25 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
 * [AutoParser](https://github.com/LarryPage/AutoParser)
 * [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)
-* 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法
-* 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model，保存.h.m，并引入到项目中
+* 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法，若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法
+* 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
-* ModelClass *record=[[ModelClass alloc] initWithDic:response[@"data"]];//dic转model
-* NSDictionary *dic=[record dic];//model转dic
-* ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
-* NSString *jsonString=[record json];//model转json字符串
-* (NSDictionary *)replacedKeyMap;//类方法,在propertyName与josnKeyName不一致时，要设置类函数,返回replacedKeyMap：{propertyName:jsonKeyName},用例： <br>
-+ (NSDictionary *)replacedKeyMap{ <br>
-    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]]; <br>
-    //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];<br>
-    [map safeSetObject:@"avatar" forKey:@"icon"]; <br>
-    return map; <br>
-} <br>
+```
+ModelClass *record=[[ModelClass alloc] initWithDic:response[@"data"]];//dic转model
+NSDictionary *dic=[record dic];//model转dic
+ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
+NSString *jsonString=[record json];//model转json字符串
+(NSDictionary *)replacedKeyMap;//类方法,在propertyName与josnKeyName不一致时，要设置类函数,返回replacedKeyMap：{propertyName:jsonKeyName},用例：
+
++ (NSDictionary *)replacedKeyMap{ 
+    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]];
+    //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
+    [map safeSetObject:@"avatar" forKey:@"icon"];
+    return map;
+}
+
 * ModelClass *copy=[record copy];//支持model NSCoding
 * [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
 * ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
 * NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
+```
