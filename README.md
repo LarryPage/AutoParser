@@ -33,7 +33,14 @@ NSDictionary *dic=[record dic];//model转dic
 ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
 NSString *jsonString=[record json];//model转json字符串
 
-(NSDictionary *)replacedKeyMap;//在propertyName与josnKeyName不一致时，要在model.m实现的类方法,返回replacedKeyMap：{propertyName:jsonKeyName},用例：
+/*
+ ,用例：
+*/
+/**
+ 在propertyName与josnKeyName不一致时，要在model.m实现的类方法
+ 返回replacedKeyMap：{propertyName:jsonKeyName}
+ 建议使用 [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model) 自动生成a
+ */
 + (NSDictionary *)replacedKeyMap{ 
     NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
