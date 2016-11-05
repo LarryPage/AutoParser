@@ -41,8 +41,8 @@ NSString *jsonString=[record json];//model转json字符串
     return map;
 }
 
-* NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
-* ModelClass *copy=[record copy];//支持model NSCoding
-* [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
-* ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
+NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
+ModelClass *copy=[record copy];//支持model NSCoding
+[NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
+ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
 ```
