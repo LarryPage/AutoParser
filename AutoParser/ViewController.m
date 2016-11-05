@@ -29,7 +29,7 @@
 #pragma mark Action
 
 /**
- *  模型定义->属性字典
+ *  model定义->属性字典
  */
 - (IBAction)propertiesOfModelBtn:(id)sender{
     NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[User class]];
@@ -209,6 +209,9 @@
     }
 }
 
+/**
+ *  model存储序列化文件
+ */
 - (IBAction)modelSaveBtn:(id)sender{
     // 1.新建模型
     User *user = [[User alloc] init];
@@ -240,6 +243,9 @@
     NSLog(@"对象已归档!!!!!!!");
 }
 
+/**
+ *  序列化文件读取model
+ */
 - (IBAction)modelReadBtn:(id)sender{
     // 1.获得Documents的全路径
     NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
