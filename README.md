@@ -27,8 +27,6 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
 ```
-NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
-
 ModelClass *record=[[ModelClass alloc] initWithDic:response[@"data"]];//dic转model
 NSDictionary *dic=[record dic];//model转dic
 
@@ -43,6 +41,7 @@ NSString *jsonString=[record json];//model转json字符串
     return map;
 }
 
+* NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
 * ModelClass *copy=[record copy];//支持model NSCoding
 * [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
 * ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
