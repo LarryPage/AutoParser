@@ -33,9 +33,6 @@ NSDictionary *dic=[record dic];//model转dic
 ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
 NSString *jsonString=[record json];//model转json字符串
 
-/*
- ,用例：
-*/
 /**
  在propertyName与josnKeyName不一致时，要在model.m实现的类方法
  返回replacedKeyMap：{propertyName:jsonKeyName}
