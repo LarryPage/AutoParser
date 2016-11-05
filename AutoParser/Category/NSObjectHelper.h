@@ -39,23 +39,33 @@
  */
 @interface NSObject (KVC)
 
+/** dic转model */
 - (id)initWithDic:(NSDictionary *)dic;
+/** model转dic */
 - (NSDictionary *)dic;
+/** json字符串转model */
 - (id)initWithJson:(NSString *)json;
+/** model转json字符串 */
 - (NSString *)json;
 
-+ (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic;
-+ (void)KeyValueEncoderForObject:(id)object dic:(NSDictionary *)dic;
+/**
+ 在propertyName与josnKeyName不一致时，要设置类函数
+ 返回replacedKeyMap：{propertyName:jsonKeyName}
+ */
++ (NSDictionary *)replacedKeyMap;
 
-//recursive
+/** model定义->属性字典 */
 + (NSDictionary *) propertiesOfObject:(id)object;
 + (NSDictionary *) propertiesOfClass:(Class)klass;
-+ (NSDictionary *) propertiesOfSubclass:(Class)klass;
++ (NSDictionary *) propertiesOfSubclass:(Class)klass;//recursive
 
 #pragma mark NSCoding
+/** 支持model存储序列化文件 */
 - (void)encodeWithCoder:(NSCoder *)aCoder;
+/** 支持序列化文件读取model */
 - (id)initWithCoder:(NSCoder *)aDecoder;
 
 #pragma mark NSCopying
+/** 支持model copy */
 - (id)copyWithZone:(NSZone *)zone;
 @end

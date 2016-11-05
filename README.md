@@ -28,6 +28,13 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 * NSDictionary *dic=[record dic];//model转dic
 * ModelClass *record=[[ModelClass alloc] initWithJson:jsonString];//json字符串转model
 * NSString *jsonString=[record json];//model转json字符串
+* (NSDictionary *)replacedKeyMap;//类方法,在propertyName与josnKeyName不一致时，要设置类函数,返回replacedKeyMap：{propertyName:jsonKeyName},用例： <br>
++ (NSDictionary *)replacedKeyMap{ <br>
+    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]]; <br>
+    //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];<br>
+    [map safeSetObject:@"avatar" forKey:@"icon"]; <br>
+    return map; <br>
+} <br>
 * ModelClass *copy=[record copy];//支持model NSCoding
 * [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
 * ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model

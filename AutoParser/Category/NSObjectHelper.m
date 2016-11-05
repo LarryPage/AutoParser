@@ -68,62 +68,69 @@ static NSCache *gPropertiesOfClass = nil;
     return nil;
 }
 
++ (NSDictionary *)replacedKeyMap{
+    return nil;
+}
+
 + (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
+    NSDictionary *map = [[object class] replacedKeyMap];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *jsonKeyName=(map && [map valueForKey:key])?[map valueForKey:key]:key;
+        
         if ([obj isEqualToString:NSStringFromClass([NSString class])]) {
-            id value= [NSString safeStringFromObject:[dic valueForKey:key]];
+            id value= [NSString safeStringFromObject:[dic valueForKey:jsonKeyName]];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
-            id value=[NSMutableString safeStringFromObject:[dic valueForKey:key]];
+            id value=[NSMutableString safeStringFromObject:[dic valueForKey:jsonKeyName]];
             //value=(NSMutableString *)[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])]) {
-            id value=[NSDictionary safeDictionaryFromObject:[dic valueForKey:key]];
+            id value=[NSDictionary safeDictionaryFromObject:[dic valueForKey:jsonKeyName]];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
-            id value=[NSMutableDictionary safeDictionaryFromObject:[dic valueForKey:key]];
+            id value=[NSMutableDictionary safeDictionaryFromObject:[dic valueForKey:jsonKeyName]];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
-            id value=[NSNumber safeNumberFromObject:[dic valueForKey:key]];
+            id value=[NSNumber safeNumberFromObject:[dic valueForKey:jsonKeyName]];
             [object setValue:value forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG]]) {//NSInteger
-            NSInteger value=[[NSString safeStringFromObject:[dic valueForKey:key]] integerValue];
+            NSInteger value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] integerValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_UINT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG]]) {//NSUInteger
-            NSUInteger value=[[NSString safeStringFromObject:[dic valueForKey:key]] integerValue];
+            NSUInteger value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] integerValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_DBL]]) {//double
-            double value=[[NSString safeStringFromObject:[dic valueForKey:key]] doubleValue];
+            double value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] doubleValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_FLT]]) {//float
-            float value=[[NSString safeStringFromObject:[dic valueForKey:key]] floatValue];
+            float value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] floatValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]) {//int
-            int value=[[NSString safeStringFromObject:[dic valueForKey:key]] intValue];
+            int value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] intValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_BOOL]]) {//bool,BOOL
-            bool value=[[NSString safeStringFromObject:[dic valueForKey:key]] boolValue];
+            bool value=[[NSString safeStringFromObject:[dic valueForKey:jsonKeyName]] boolValue];
             [object setValue:@(value) forKeyPath:key];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
             NSMutableArray *value=[[NSMutableArray alloc] init];
             
-            NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:key]];
+            NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:jsonKeyName]];
             for (NSObject *record in records) {
                 [value safeAddObject:record];
             }
@@ -133,7 +140,7 @@ static NSCache *gPropertiesOfClass = nil;
         else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
             NSMutableSet *value=[[NSMutableSet alloc] init];
             
-            NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:key]];
+            NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:jsonKeyName]];
             for (NSObject *record in records) {
                 [value safeAddObject:record];
             }
@@ -143,7 +150,7 @@ static NSCache *gPropertiesOfClass = nil;
         else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
             NSMutableOrderedSet *value=[[NSMutableOrderedSet alloc] init];
             
-            NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:key]];
+            NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:jsonKeyName]];
             for (NSObject *record in records) {
                 [value safeAddObject:record];
             }
@@ -162,7 +169,7 @@ static NSCache *gPropertiesOfClass = nil;
                 if ([className isEqualToString:NSStringFromClass([NSArray class])] || [className isEqualToString:NSStringFromClass([NSMutableArray class])]) {
                     NSMutableArray *value=[[NSMutableArray alloc] init];
                     
-                    NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:key]];
+                    NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:jsonKeyName]];
                     for (NSDictionary *record in records) {
                         if (!record || ![record isKindOfClass:[NSDictionary class]]) {
                             continue;
@@ -178,7 +185,7 @@ static NSCache *gPropertiesOfClass = nil;
                 else if ([className isEqualToString:NSStringFromClass([NSSet class])] || [className isEqualToString:NSStringFromClass([NSMutableSet class])]) {
                     NSMutableSet *value=[[NSMutableSet alloc] init];
                     
-                    NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:key]];
+                    NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:jsonKeyName]];
                     for (NSDictionary *record in records) {
                         if (!record || ![record isKindOfClass:[NSDictionary class]]) {
                             continue;
@@ -194,7 +201,7 @@ static NSCache *gPropertiesOfClass = nil;
                 else if ([className isEqualToString:NSStringFromClass([NSOrderedSet class])] || [className isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
                     NSMutableOrderedSet *value=[[NSMutableOrderedSet alloc] init];
                     
-                    NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:key]];
+                    NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:jsonKeyName]];
                     for (NSDictionary *record in records) {
                         if (!record || ![record isKindOfClass:[NSDictionary class]]) {
                             continue;
@@ -211,7 +218,7 @@ static NSCache *gPropertiesOfClass = nil;
             
             id aClass = NSClassFromString(obj);
             if([aClass instancesRespondToSelector:@selector(initWithDic:)]){
-                [object setValue:[[aClass alloc] initWithDic:[dic valueForKey:key]] forKeyPath:key];
+                [object setValue:[[aClass alloc] initWithDic:[dic valueForKey:jsonKeyName]] forKeyPath:key];
             }
         }
     }];
@@ -219,46 +226,49 @@ static NSCache *gPropertiesOfClass = nil;
 
 + (void)KeyValueEncoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
+    NSDictionary *map = [[object class] replacedKeyMap];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        NSString *jsonKeyName=(map && [map valueForKey:key])?[map valueForKey:key]:key;
+        
         if ([obj isEqualToString:NSStringFromClass([NSString class])] || [obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
             id value=[object valueForKeyPath:key];
-            [dic setValue:(value?value:@"") forKeyPath:key];
+            [dic setValue:(value?value:@"") forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])] || [obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
             id value=[object valueForKeyPath:key];
-            [dic setValue:(value?value:[NSMutableDictionary dictionary]) forKeyPath:key];
+            [dic setValue:(value?value:[NSMutableDictionary dictionary]) forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
             id value=[object valueForKeyPath:key];
-            [dic setValue:value forKeyPath:key];
+            [dic setValue:value forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG]]) {//NSInteger
             NSInteger value=[[object valueForKeyPath:key] integerValue];
-            [dic setValue:@(value) forKeyPath:key];
+            [dic setValue:@(value) forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG_LNG]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_UINT]]
                  || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG]]) {//NSUInteger
             NSUInteger value=[[object valueForKeyPath:key] integerValue];
-            [dic setValue:@(value) forKeyPath:key];
+            [dic setValue:@(value) forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_DBL]]) {//double
             double value=[[object valueForKeyPath:key] doubleValue];
-            [dic setValue:[NSString stringWithFormat:@"%0.6f", value] forKeyPath:key];
+            [dic setValue:[NSString stringWithFormat:@"%0.6f", value] forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_FLT]]) {//float
             float value=[[object valueForKeyPath:key] floatValue];
-            [dic setValue:[NSString stringWithFormat:@"%0.6f", value] forKeyPath:key];
+            [dic setValue:[NSString stringWithFormat:@"%0.6f", value] forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]) {//int
             int value=[[object valueForKeyPath:key] intValue];
-            [dic setValue:@(value) forKeyPath:key];
+            [dic setValue:@(value) forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_BOOL]]) {//bool,BOOL
             bool value=[[object valueForKeyPath:key] boolValue];
-            [dic setValue:@(value) forKeyPath:key];
+            [dic setValue:@(value) forKeyPath:jsonKeyName];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
             NSMutableArray *value=[NSMutableArray array];
@@ -268,7 +278,7 @@ static NSCache *gPropertiesOfClass = nil;
                 NSObject *record = (NSObject *)obj;
                 [value safeAddObject:record];
             }];
-            [dic setValue:value forKey:key];
+            [dic setValue:value forKey:jsonKeyName];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
             NSMutableSet *value=[NSMutableSet set];
@@ -278,7 +288,7 @@ static NSCache *gPropertiesOfClass = nil;
                 NSObject *record = (NSObject *)obj;
                 [value safeAddObject:record];
             }];
-            [dic setValue:value forKey:key];
+            [dic setValue:value forKey:jsonKeyName];
         }
         else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
             NSMutableOrderedSet *value=[NSMutableOrderedSet orderedSet];
@@ -288,7 +298,7 @@ static NSCache *gPropertiesOfClass = nil;
                 NSObject *record = (NSObject *)obj;
                 [value safeAddObject:record];
             }];
-            [dic setValue:value forKey:key];
+            [dic setValue:value forKey:jsonKeyName];
         }
         else{//自定义class
             NSRegularExpression *arrayRegExp=[[NSRegularExpression alloc] initWithPattern:@"(?<=\\<).*?(?=\\>)" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -310,7 +320,7 @@ static NSCache *gPropertiesOfClass = nil;
                         
                     }];
                     
-                    [dic setValue:value forKey:key];
+                    [dic setValue:value forKey:jsonKeyName];
                     return;
                 }
                 else if ([className isEqualToString:NSStringFromClass([NSSet class])] || [className isEqualToString:NSStringFromClass([NSMutableSet class])]) {
@@ -324,7 +334,7 @@ static NSCache *gPropertiesOfClass = nil;
                         
                     }];
                     
-                    [dic setValue:value forKey:key];
+                    [dic setValue:value forKey:jsonKeyName];
                     return;
                 }
                 else if ([className isEqualToString:NSStringFromClass([NSOrderedSet class])] || [className isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
@@ -338,7 +348,7 @@ static NSCache *gPropertiesOfClass = nil;
                         
                     }];
                     
-                    [dic setValue:value forKey:key];
+                    [dic setValue:value forKey:jsonKeyName];
                     return;
                 }
             }
@@ -346,7 +356,7 @@ static NSCache *gPropertiesOfClass = nil;
             id aClass = NSClassFromString(obj);
             if([aClass instancesRespondToSelector:@selector(dic)]){
                 NSDictionary *value=[[object valueForKeyPath:key] dic];
-                [dic setValue:value?value:[NSDictionary dictionary] forKey:key];
+                [dic setValue:value?value:[NSDictionary dictionary] forKey:jsonKeyName];
             }
         }
     }];

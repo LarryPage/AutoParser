@@ -10,6 +10,8 @@
 
 @implementation StatusResult
 
+#pragma mark override
+
 -(id) init{
     self = [super init];
     if (self) {

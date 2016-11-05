@@ -12,31 +12,11 @@
 
 #pragma mark override
 
-//-(id) init{
-//    self = [super init];
-//    if (self) {
-//        // Initialization code
-//    }
-//    return self;
-//}
-
-/**
-*  nativePropertyName and JosnKeyName are different ,replace them in initWithDic()
-*/
-- (id)initWithDic:(NSDictionary *)dic{
-    self = [super initWithDic:dic];
-    self.icon = [NSString safeStringFromObject:[dic objectForKey:@"avatar"]];//key替换
-    return self;
-}
-
-/**
- *  nativePropertyName and JosnKeyName are different ,replace them in dic()
- */
-- (NSDictionary *)dic{
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[super dic]];
-    [dic removeObjectForKey:@"icon"];
-    [dic safeSetObject:self.icon forKey:@"avatar"];//key替换
-    return dic;
++ (NSDictionary *)replacedKeyMap{
+    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]];
+    //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
+    [map safeSetObject:@"avatar" forKey:@"icon"];
+    return map;
 }
 
 @end
