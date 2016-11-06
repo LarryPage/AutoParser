@@ -11,6 +11,7 @@
 
 ///------------------------------
 /// @LiXiangCheng 20161022
+/// readme:http://adhoc.qiniudn.com/README.html
 /// GitHub:https://github.com/LarryPage/AutoParser
 /// 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K
 /// 实现 dictionary<->model json<->model
@@ -39,9 +40,15 @@
  */
 @interface NSObject (KVC)
 
-/** dic转model */
+/** 
+ dic转model 
+ readme:http://adhoc.qiniudn.com/README.html
+ */
 - (id)initWithDic:(NSDictionary *)dic;
-/** model转dic */
+/**
+ model转dic
+ readme:http://adhoc.qiniudn.com/README.html
+ */
 - (NSDictionary *)dic;
 /** json字符串转model */
 - (id)initWithJson:(NSString *)json;
