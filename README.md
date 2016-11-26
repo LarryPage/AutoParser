@@ -1,4 +1,5 @@
 # AutoParser
+基于ObjC Runtime,SafeCategory,NSCache实现自动解析<br>
 自动化Jons数据与Model互相解析 <br>
 一个NSObject Category类，only一个方法即可实现 <br>
 Josn与model互相转换，涉及到 <br>
