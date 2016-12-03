@@ -19,7 +19,7 @@
     return map;
     
 //    return @{@"propertyName" : @"jsonKeyName",
-//             @"desc" : @"desciption"
+//             @"icon" : @"avatar"
 //             };
 
 }
