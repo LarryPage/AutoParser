@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
+#define JSONInterface(class) protocol class <NSObject> @end\
+@interface class
+
+#define JSONArray(type) NSArray<type>
+#define JSONMutableArray(type) NSMutableArray<type>
+
 ///------------------------------
 /// @LiXiangCheng 20161022
 /// readme:http://adhoc.qiniudn.com/README.html

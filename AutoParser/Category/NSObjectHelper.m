@@ -14,6 +14,12 @@
  最大缓存500个Model定义
  */
 static NSCache *gPropertiesOfClass = nil;
+/**
+ 缓存要解析的类中不一致的propertyName与josnKeyName
+ countLimit=500
+ 最大缓存500个Model定义（同上）
+ */
+static NSCache *gReplacedKeyMapsOfClass = nil;
 
 @implementation NSObject (KVC)
 
@@ -72,9 +78,47 @@ static NSCache *gPropertiesOfClass = nil;
     return nil;
 }
 
++ (NSDictionary *)replacedKeyMapOfClass:(Class)klass{
+    //memory缓存
+    if (!gReplacedKeyMapsOfClass) {
+        gReplacedKeyMapsOfClass = [[NSCache alloc] init];
+        gReplacedKeyMapsOfClass.name=@"AutuParser.ReplacedKeyMapsOfClass";
+        gReplacedKeyMapsOfClass.countLimit=500;
+    }
+    NSMutableDictionary * map=[gReplacedKeyMapsOfClass objectForKey:NSStringFromClass(klass)];
+    if (map) {
+    }
+    else{
+        map = [NSMutableDictionary dictionary];
+        [self replacedKeyMapForHierarchyOfClass:klass onDictionary:map];
+        //CLog(@"%@:%@",NSStringFromClass(klass),map);
+        [gReplacedKeyMapsOfClass setObject:map forKey:NSStringFromClass(klass)];
+    }
+    return map;
+    
+//    NSMutableDictionary *map = [NSMutableDictionary dictionary];
+//    [self replacedKeyMapForHierarchyOfClass:klass onDictionary:map];
+//    return [NSDictionary dictionaryWithDictionary:map];
+}
+
++ (void)replacedKeyMapForHierarchyOfClass:(Class)class onDictionary:(NSMutableDictionary *)map{
+    if (class == NULL) {
+        return;
+    }
+    
+    if (class == [NSObject class]) {
+    }
+    
+    [self replacedKeyMapForHierarchyOfClass:[class superclass] onDictionary:map];
+    
+    [[class replacedKeyMap] enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [map safeSetObject:obj forKey:key];
+    }];
+}
+
 + (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
-    NSDictionary *map = [[object class] replacedKeyMap];
+    NSDictionary *map = [self replacedKeyMapOfClass:[object class]];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString *jsonKeyName=(map && [map valueForKey:key])?[map valueForKey:key]:key;
         
@@ -226,7 +270,7 @@ static NSCache *gPropertiesOfClass = nil;
 
 + (void)KeyValueEncoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
-    NSDictionary *map = [[object class] replacedKeyMap];
+    NSDictionary *map = [self replacedKeyMapOfClass:[object class]];
     [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
         NSString *jsonKeyName=(map && [map valueForKey:key])?[map valueForKey:key]:key;
         
@@ -414,13 +458,13 @@ static const char *getPropertyType(const char *attributes) {
     else{
         properties = [NSMutableDictionary dictionary];
         [self propertiesForHierarchyOfClass:klass onDictionary:properties];
-        //CLog(@"%@:%@",NSStringFromClass(class),properties);
+        //CLog(@"%@:%@",NSStringFromClass(klass),properties);
         [gPropertiesOfClass setObject:properties forKey:NSStringFromClass(klass)];
     }
     return properties;
     
 //    NSMutableDictionary * properties = [NSMutableDictionary dictionary];
-//    [self propertiesForHierarchyOfClass:class onDictionary:properties];
+//    [self propertiesForHierarchyOfClass:klass onDictionary:properties];
 //    return [NSDictionary dictionaryWithDictionary:properties];
 }
 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /** 用户模型 */
-@interface User : NSObject
+@JSONInterface(User) : NSObject
 
 /** 名称 */
 @property (nonatomic, strong) NSString *name;

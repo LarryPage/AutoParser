@@ -8,11 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol Ad <NSObject>
-@end
-
 /** 广告模型 */
-@interface Ad : NSObject
+@JSONInterface(Ad) : NSObject
 
 /** 广告图片 */
 @property (nonatomic, strong) NSString *image;
