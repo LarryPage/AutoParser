@@ -40,7 +40,7 @@ NSString *jsonString=[record json];//model转json字符串
  建议使用 JOSN2Model.app 自动生成
  */
 + (NSDictionary *)replacedKeyMap{ 
-    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithDictionary:[self.superclass replacedKeyMap]];
+    NSMutableDictionary *map = [NSMutableDictionary dictionary];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
     [map safeSetObject:@"avatar" forKey:@"icon"];
     return map;
