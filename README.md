@@ -44,11 +44,12 @@ NSString *jsonString=[record json];//model转json字符串
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
     [map safeSetObject:@"avatar" forKey:@"icon"];
     return map;
-
-	//or
-//    return @{@"propertyName" : @"jsonKeyName",
-//             @"icon" : @"avatar"
-//             };
+}
+//or
++ (NSDictionary *)replacedKeyMap{ 
+    return @{@"propertyName" : @"jsonKeyName",
+             @"icon" : @"avatar"
+             };
 }
 
 NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典
