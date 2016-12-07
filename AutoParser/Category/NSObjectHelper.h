@@ -46,39 +46,130 @@
  */
 @interface NSObject (KVC)
 
-/** 
- dic转model 
- readme:http://adhoc.qiniudn.com/README.html
- */
+/*!
+*  @brief dic转model
+*  readme:http://adhoc.qiniudn.com/README.html
+*
+*  @param dic  字典
+*
+*  @return model对象
+*
+*  @since 1.0
+*/
 - (id)initWithDic:(NSDictionary *)dic;
-/**
- model转dic
- readme:http://adhoc.qiniudn.com/README.html
+
+
+/*!
+ *  @brief model转dic
+ *  readme:http://adhoc.qiniudn.com/README.html
+ *
+ *  @return 字典
+ *
+ *  @since 1.0
  */
 - (NSDictionary *)dic;
-/** json字符串转model */
+
+
+/*!
+ *  @brief json字符串转model
+ *
+ *  @param json  json字符串
+ *
+ *  @return model对象
+ *
+ *  @since 1.0
+ */
 - (id)initWithJson:(NSString *)json;
-/** model转json字符串 */
+
+
+/*!
+ *  @brief model转json字符串
+ *
+ *  @return json字符串
+ *
+ *  @since 1.0
+ */
 - (NSString *)json;
 
-/**
- 在propertyName与josnKeyName不一致时，要设置类函数
- 返回replacedKeyMap：{propertyName:jsonKeyName}
+
+/*!
+ *  @brief 在propertyName与josnKeyName不一致时，要设置此类函数
+ *
+ *  @return 字典映射replacedKeyMap：{propertyName:jsonKeyName}
+ *
+ *  @since 1.0
  */
 + (NSDictionary *)replacedKeyMap;
 
-/** model定义->属性字典 */
+
+/*!
+ *  @brief model对象转属性字典
+ *
+ *  @param object  model对象
+ *
+ *  @return model属性字典
+ *
+ *  @since 1.0
+ */
 + (NSDictionary *) propertiesOfObject:(id)object;
+
+
+/*!
+ *  @brief model类转属性字典
+ *
+ *  @param klass  model类
+ *
+ *  @return model属性字典
+ *
+ *  @since 1.0
+ */
 + (NSDictionary *) propertiesOfClass:(Class)klass;
-+ (NSDictionary *) propertiesOfSubclass:(Class)klass;//recursive
+
+
+/*!
+ *  @brief model类的子类转属性字典，支持递归(recursive)
+ *
+ *  @param klass  model类
+ *
+ *  @return model的子类属性字典
+ *
+ *  @since 1.0
+ */
++ (NSDictionary *) propertiesOfSubclass:(Class)klass;
+
 
 #pragma mark NSCoding
-/** 支持model存储序列化文件 */
+/*!
+ *  @brief 支持model存储序列化文件
+ *
+ *  @param aCoder  An archiver object.
+ *
+ *  @since 1.0
+ */
 - (void)encodeWithCoder:(NSCoder *)aCoder;
-/** 支持序列化文件读取model */
+
+
+/*!
+ *  @brief 支持序列化文件读取转为model
+ *
+ *  @param aDecoder  An unarchiver object.
+ *
+ *  @return self, initialized using the data in decoder.
+ *
+ *  @since 1.0
+ */
 - (id)initWithCoder:(NSCoder *)aDecoder;
 
+
 #pragma mark NSCopying
-/** 支持model copy */
+/*!
+ *  @brief 支持model copy
+ *
+ *  @param zone  This parameter is ignored. Memory zones are no longer used by Objective-C.
+ *
+ *  @return Returns a new instance that’s a copy of the receiver.
+ *
+ *  @since 1.0
+ */
 - (id)copyWithZone:(NSZone *)zone;
 @end
