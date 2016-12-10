@@ -15,6 +15,12 @@
 #define JSONArray(type) NSArray<type>
 #define JSONMutableArray(type) NSMutableArray<type>
 
+#define JSONSet(type) NSSet<type>
+#define JSONMutableSet(type) NSMutableSet<type>
+
+#define JSONOrderedSet(type) NSOrderedSet<type>
+#define JSONMutableOrderedSet(type) NSMutableOrderedSet<type>
+
 ///------------------------------
 /// @LiXiangCheng 20161022
 /// readme:http://adhoc.qiniudn.com/README.html
