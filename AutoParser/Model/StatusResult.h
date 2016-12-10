@@ -24,4 +24,6 @@
 /** 下一页的游标 */
 @property (nonatomic, assign) NSUInteger nextCursor;
 
+@property (nonatomic, strong) NSArray *numberList;
+@property (nonatomic, strong) NSArray *stringList;
 @end

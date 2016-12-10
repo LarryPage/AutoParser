@@ -22,5 +22,7 @@
       "url": "http://www.ad.com"
     }
   ],
+  "numberList":[1,2],
+  "stringList":["1","2"],
   "nextCursor": 13476599
 }
