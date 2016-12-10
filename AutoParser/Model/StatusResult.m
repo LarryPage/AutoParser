@@ -16,8 +16,10 @@
     self = [super init];
     if (self) {
         // Initialization code
-        self.statuses=(NSMutableArray<Status> *)[NSMutableArray array];
-        self.ads=(NSMutableArray<Ad> *)[NSMutableArray array];
+        self.statuses=(JSONMutableArray(Status) *)[NSMutableArray array];
+        self.ads=(JSONMutableArray(Ad) *)[NSMutableArray array];
+        self.numberList=[NSMutableArray array];
+        self.stringList=[NSMutableArray array];
     }
     return self;
 }
