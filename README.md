@@ -19,11 +19,47 @@ Josn层级嵌套，Mode对象josn化 <br>
 6.model存储序列化文件 <br>
 7.序列化文件读取model <br>
 
+```
+Model定义使用如下：
+@JSONInterface(Status) : NSObject
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) Status *retweetedStatus;
+@end
+
+
+@JSONInterface(StatusResult) : NSObject
+@property (nonatomic, strong) JSONMutableArray(Status) *statuses;
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSNumber *totalNumber;
+@property (nonatomic, assign) NSUInteger previousCursor;
+@property (nonatomic, assign) NSUInteger nextCursor;
+@property (nonatomic, strong) JSONMutableArray(NSNumber) *numberList;
+@property (nonatomic, strong) JSONMutableArray(NSString) *stringList;
+@property (nonatomic, strong) JSONMutableArray(NSDictionary) *dictionaryList;
+@end
+
+@implementation StatusResult
++ (NSDictionary *)replacedKeyMap{ 
+    NSMutableDictionary *map = [NSMutableDictionary dictionary];
+    //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
+    [map safeSetObject:@"avatar" forKey:@"icon"];
+    return map;
+}
+//or
++ (NSDictionary *)replacedKeyMap{ 
+    return @{@"propertyName" : @"jsonKeyName",
+             @"icon" : @"avatar"
+             };
+}
+@end
+
+```
 
 AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
 * [AutoParser](https://github.com/LarryPage/AutoParser)
-* [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)
+* [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)   下载<a href="http://adhoc.qiniudn.com/JOSN2Model.app.zip">JOSN2Model.app</a>
 * 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法，若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
