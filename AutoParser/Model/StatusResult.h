@@ -28,4 +28,5 @@
 @property (nonatomic, strong) JSONMutableArray(NSNumber) *numberList;
 //@property (nonatomic, strong) NSArray *stringList;//或者
 @property (nonatomic, strong) JSONMutableArray(NSString) *stringList;
+@property (nonatomic, strong) JSONMutableArray(NSDictionary) *dictionaryList;
 @end
