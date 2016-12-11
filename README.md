@@ -58,7 +58,7 @@ Model定义使用如下：
 @end
 ```
 使用： <br>
-<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=700 />
+<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=850 />
 
 AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
