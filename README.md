@@ -21,12 +21,12 @@ Josn层级嵌套，Mode对象josn化 <br>
 
 ```
 Model定义使用如下：
+
 @JSONInterface(Status) : NSObject
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) Status *retweetedStatus;
 @end
-
 
 @JSONInterface(StatusResult) : NSObject
 @property (nonatomic, strong) JSONMutableArray(Status) *statuses;
