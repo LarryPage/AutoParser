@@ -24,6 +24,8 @@
 /** 下一页的游标 */
 @property (nonatomic, assign) NSUInteger nextCursor;
 
-@property (nonatomic, strong) NSArray *numberList;
-@property (nonatomic, strong) NSArray *stringList;
+//@property (nonatomic, strong) NSArray *numberList;//或者
+@property (nonatomic, strong) JSONMutableArray(NSNumber) *numberList;
+//@property (nonatomic, strong) NSArray *stringList;//或者
+@property (nonatomic, strong) JSONMutableArray(NSString) *stringList;
 @end

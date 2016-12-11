@@ -21,6 +21,12 @@
 #define JSONOrderedSet(type) NSOrderedSet<type>
 #define JSONMutableOrderedSet(type) NSMutableOrderedSet<type>
 
+@protocol NSNumber <NSObject> @end
+@protocol NSString <NSObject> @end
+@protocol NSMutableString <NSObject> @end
+@protocol NSDictionary <NSObject> @end
+@protocol NSMutableDictionary <NSObject> @end
+
 ///------------------------------
 /// @LiXiangCheng 20161022
 /// readme:http://adhoc.qiniudn.com/README.html

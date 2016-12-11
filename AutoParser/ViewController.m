@@ -174,6 +174,10 @@
     record.totalNumber=@2016;
     record.previousCursor=13476589;
     record.nextCursor=13476599;
+    [record.numberList addObject:@1];
+    [record.numberList addObject:@2];
+    [record.stringList addObject:@"1"];
+    [record.stringList addObject:@"2"];
     
     // 2.将模型转为字符串
     NSString *json = [record json];

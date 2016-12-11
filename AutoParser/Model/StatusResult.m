@@ -18,8 +18,10 @@
         // Initialization code
         self.statuses=(JSONMutableArray(Status) *)[NSMutableArray array];
         self.ads=(JSONMutableArray(Ad) *)[NSMutableArray array];
-        self.numberList=[NSMutableArray array];
-        self.stringList=[NSMutableArray array];
+        //self.numberList=[NSMutableArray array];
+        self.numberList=(JSONMutableArray(NSNumber) *)[NSMutableArray array];
+        //self.stringList=[NSMutableArray array];
+        self.stringList=(JSONMutableArray(NSString) *)[NSMutableArray array];
     }
     return self;
 }

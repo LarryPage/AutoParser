@@ -214,12 +214,31 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     NSMutableArray *value=[[NSMutableArray alloc] init];
                     
                     NSArray *records = [NSArray safeArrayFromObject:[dic valueForKey:jsonKeyName]];
-                    for (NSDictionary *record in records) {
-                        if (!record || ![record isKindOfClass:[NSDictionary class]]) {
+                    for (NSObject *record in records) {
+                        if (!record) {
                             continue;
                         }
-                        if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
-                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:[NSNumber safeNumberFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:[NSString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:[NSMutableString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:[NSDictionary safeDictionaryFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:[NSMutableDictionary safeDictionaryFromObject:record]];
+                        }
+                        else{
+                            if ([record isKindOfClass:[NSDictionary class]]) {
+                                if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
+                                    [value safeAddObject:[[recordClass alloc] initWithDic:(NSDictionary *)record]];
+                                }
+                            }
                         }
                     }
                     
@@ -230,12 +249,31 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     NSMutableSet *value=[[NSMutableSet alloc] init];
                     
                     NSSet *records = [NSSet safeSetFromObject:[dic valueForKey:jsonKeyName]];
-                    for (NSDictionary *record in records) {
-                        if (!record || ![record isKindOfClass:[NSDictionary class]]) {
+                    for (NSObject *record in records) {
+                        if (!record) {
                             continue;
                         }
-                        if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
-                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:[NSNumber safeNumberFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:[NSString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:[NSMutableString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:[NSDictionary safeDictionaryFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:[NSMutableDictionary safeDictionaryFromObject:record]];
+                        }
+                        else{
+                            if ([record isKindOfClass:[NSDictionary class]]) {
+                                if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
+                                    [value safeAddObject:[[recordClass alloc] initWithDic:(NSDictionary *)record]];
+                                }
+                            }
                         }
                     }
                     
@@ -246,12 +284,31 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     NSMutableOrderedSet *value=[[NSMutableOrderedSet alloc] init];
                     
                     NSOrderedSet *records = [NSOrderedSet safeOrderedSetFromObject:[dic valueForKey:jsonKeyName]];
-                    for (NSDictionary *record in records) {
-                        if (!record || ![record isKindOfClass:[NSDictionary class]]) {
+                    for (NSObject *record in records) {
+                        if (!record) {
                             continue;
                         }
-                        if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
-                            [value safeAddObject:[[recordClass alloc] initWithDic:record]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:[NSNumber safeNumberFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:[NSString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:[NSMutableString safeStringFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:[NSDictionary safeDictionaryFromObject:record]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:[NSMutableDictionary safeDictionaryFromObject:record]];
+                        }
+                        else{
+                            if ([record isKindOfClass:[NSDictionary class]]) {
+                                if([recordClass instancesRespondToSelector:@selector(initWithDic:)]){
+                                    [value safeAddObject:[[recordClass alloc] initWithDic:(NSDictionary *)record]];
+                                }
+                            }
                         }
                     }
                     
@@ -358,10 +415,26 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     
                     NSArray *records=[object valueForKeyPath:key];
                     [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                        if([recordClass instancesRespondToSelector:@selector(dic)]){
-                            [value safeAddObject:[obj dic]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:obj];
                         }
-                        
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else{
+                            if([recordClass instancesRespondToSelector:@selector(dic)]){
+                                [value safeAddObject:[obj dic]];
+                            }
+                        }
                     }];
                     
                     [dic setValue:value forKey:jsonKeyName];
@@ -372,10 +445,26 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     
                     NSSet *records=[object valueForKeyPath:key];
                     [records enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
-                        if([recordClass instancesRespondToSelector:@selector(dic)]){
-                            [value safeAddObject:[obj dic]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:obj];
                         }
-                        
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else{
+                            if([recordClass instancesRespondToSelector:@selector(dic)]){
+                                [value safeAddObject:[obj dic]];
+                            }
+                        }
                     }];
                     
                     [dic setValue:value forKey:jsonKeyName];
@@ -386,10 +475,26 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
                     
                     NSOrderedSet *records=[object valueForKeyPath:key];
                     [records enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-                        if([recordClass instancesRespondToSelector:@selector(dic)]){
-                            [value safeAddObject:[obj dic]];
+                        if ([recordClassName isEqualToString:NSStringFromClass([NSNumber class])]) {
+                            [value safeAddObject:obj];
                         }
-                        
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableString class])]) {
+                            [value safeAddObject:obj?obj:@""];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else if ([recordClassName isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+                            [value safeAddObject:obj?obj:[NSMutableDictionary dictionary]];
+                        }
+                        else{
+                            if([recordClass instancesRespondToSelector:@selector(dic)]){
+                                [value safeAddObject:[obj dic]];
+                            }
+                        }
                     }];
                     
                     [dic setValue:value forKey:jsonKeyName];
