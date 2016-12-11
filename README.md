@@ -34,6 +34,7 @@ Model定义使用如下：
 @property (nonatomic, strong) NSNumber *totalNumber;
 @property (nonatomic, assign) NSUInteger previousCursor;
 @property (nonatomic, assign) NSUInteger nextCursor;
+@property (nonatomic, strong) NSArray *list;//第条记录由数据在runtime时动态确定是NSNumber,NSString,NSDictionary
 @property (nonatomic, strong) JSONMutableArray(NSNumber) *numberList;
 @property (nonatomic, strong) JSONMutableArray(NSString) *stringList;
 @property (nonatomic, strong) JSONMutableArray(NSDictionary) *dictionaryList;
