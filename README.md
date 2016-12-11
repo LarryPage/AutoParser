@@ -10,6 +10,8 @@ Josn层级嵌套，Mode对象josn化 <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
 
+![alt tag](https://github.com/LarryPage/AutoParser/blob/master/screen003.png)
+
 项目用例： <br>
 1.model定义->属性字典 <br>
 2.复杂的字典 -> 模型 (模型的数组属性里面又装着模型) <br>
@@ -60,7 +62,7 @@ Model定义使用如下：
 AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
 * [AutoParser](https://github.com/LarryPage/AutoParser)
-* [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)   下载<a href="http://adhoc.qiniudn.com/JOSN2Model.app.zip">JOSN2Model.app</a>
+* [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)   下载[JOSN2Model.app](https://github.com/LarryPage/JOSN2Model/blob/master/JOSN2Model.app.zip)
 * 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法，若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
