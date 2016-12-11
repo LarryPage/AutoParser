@@ -44,13 +44,13 @@ Model定义使用如下：
 + (NSDictionary *)replacedKeyMap{ 
     NSMutableDictionary *map = [NSMutableDictionary dictionary];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
-    [map safeSetObject:@"avatar" forKey:@"icon"];
+    [map safeSetObject:@"total_number" forKey:@"totalNumber"];
     return map;
 }
 //or
 + (NSDictionary *)replacedKeyMap{ 
     return @{@"propertyName" : @"jsonKeyName",
-             @"icon" : @"avatar"
+             @"totalNumber" : @"total_number"
              };
 }
 @end
