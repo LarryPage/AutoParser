@@ -12,7 +12,7 @@ Josn层级嵌套，Mode对象josn化 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
 
 项目用例： <br>
-<p style="display:inline-block;white-space:no-wrap;background:#fff;font-size:.8em;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 0"><img src="https://github.com/LarryPage/AutoParser/blob/master/screen002.png" alt="enter image description here" width=320 /></p>
+<img src="https://github.com/LarryPage/AutoParser/blob/master/screen002.png" alt="enter image description here" width=320 /><br>
 1.model定义->属性字典 <br>
 2.复杂的字典 -> 模型 (模型的数组属性里面又装着模型) <br>
 3.模型 (模型的数组属性里面又装着模型) -> 复杂的字典 <br>
