@@ -1,4 +1,5 @@
 # AutoParser
+特点： <br>
 基于ObjC Runtime,SafeCategory,NSCache实现自动解析<br>
 自动化Jons数据与Model互相解析 <br>
 一个NSObject Category类，only一个方法即可实现 <br>
@@ -10,10 +11,8 @@ Josn层级嵌套，Mode对象josn化 <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
 
-头文件定义：
-<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=800 />
-
 项目用例： <br>
+<img src="https://github.com/LarryPage/AutoParser/blob/master/screen002.png" alt="enter image description here" width=320 />
 1.model定义->属性字典 <br>
 2.复杂的字典 -> 模型 (模型的数组属性里面又装着模型) <br>
 3.模型 (模型的数组属性里面又装着模型) -> 复杂的字典 <br>
@@ -57,6 +56,9 @@ Model定义使用如下：
              };
 }
 @end
+
+使用：
+<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=700 />
 
 ```
 
