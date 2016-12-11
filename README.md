@@ -10,6 +10,7 @@ Josn层级嵌套，Mode对象josn化 <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
 
+<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=320 />
 ![alt tag](https://github.com/LarryPage/AutoParser/blob/master/screen003.png)
 
 项目用例： <br>
