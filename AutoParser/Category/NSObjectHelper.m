@@ -319,7 +319,10 @@ static NSCache *gReplacedKeyMapsOfClass = nil;
             
             id aClass = NSClassFromString(obj);
             if([aClass instancesRespondToSelector:@selector(initWithDic:)]){
-                [object setValue:[[aClass alloc] initWithDic:[dic valueForKey:jsonKeyName]] forKeyPath:key];
+                id value=[[aClass alloc] initWithDic:[dic valueForKey:jsonKeyName]];
+                if (value) {
+                    [object setValue:value forKeyPath:key];
+                }
             }
         }
     }];
