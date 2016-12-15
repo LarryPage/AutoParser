@@ -10,6 +10,8 @@
 #import <objc/runtime.h>
 
 #define JSONInterface(class) protocol class <NSObject> @end\
+@interface AutuParser(class)<class> @end\
+@implementation AutuParser(class) @end\
 @interface class
 
 #define JSONArray(type) NSArray<type>
@@ -185,3 +187,5 @@
  */
 - (id)copyWithZone:(NSZone *)zone;
 @end
+
+@interface AutuParser:NSObject @end

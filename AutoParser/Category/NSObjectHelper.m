@@ -635,44 +635,61 @@ static const char *getPropertyType(const char *attributes) {
 #pragma mark NSCoding
 
 - (void)encodeWithCoder:(NSCoder *)aCoder{
-    NSDictionary *propertysDic = [[self class] propertiesOfObject:self];
-    [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        id value=[self valueForKeyPath:key];
-        if (value!=nil) {
-            [aCoder encodeObject:value forKey:key];
-        }
-    }];
+    NSString *className=NSStringFromClass([self class]);
+    Protocol *protocol = objc_getProtocol([className cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+    
+    if (protocol) {
+        NSDictionary *propertysDic = [[self class] propertiesOfObject:self];
+        [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            id value=[self valueForKeyPath:key];
+            if (value!=nil) {
+                [aCoder encodeObject:value forKey:key];
+            }
+        }];
+    }
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
+    NSString *className=NSStringFromClass([self class]);
+    Protocol *protocol = objc_getProtocol([className cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+    
     //self = [super init];
     self = [self init];
-    NSDictionary *propertysDic = [[self class] propertiesOfObject:self];
-    [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        id value=[aDecoder decodeObjectForKey:key];
-        if (value!=nil) {
-            [self setValue:value forKeyPath:key];
-        }
-    }];
-    return self;
+    if (protocol) {
+        NSDictionary *propertysDic = [[self class] propertiesOfObject:self];
+        [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            id value=[aDecoder decodeObjectForKey:key];
+            if (value!=nil) {
+                [self setValue:value forKeyPath:key];
+            }
+        }];
+    }
     
+    return self;
 }
 
 #pragma mark NSCopying
 
 - (id)copyWithZone:(NSZone *)zone{
-    id copy=[[self class] new];
+    NSString *className=NSStringFromClass([self class]);
+    Protocol *protocol = objc_getProtocol([className cStringUsingEncoding:[NSString defaultCStringEncoding]]);
     
-    NSDictionary *propertysDic = [[self class] propertiesOfObject:copy];
-    [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-        id value=[self valueForKeyPath:key];
-        if (value!=nil) {
-            [copy setValue:[value copyWithZone:zone] forKeyPath:key];
-        }
-    }];
+    id copy=[[self class] new];
+    if (protocol) {
+        NSDictionary *propertysDic = [[self class] propertiesOfObject:copy];
+        [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            id value=[self valueForKeyPath:key];
+            if (value!=nil) {
+                [copy setValue:[value copyWithZone:zone] forKeyPath:key];
+            }
+        }];
+    }
     
     return copy;
 }
 
 @end
+
+
+@implementation AutuParser @end
