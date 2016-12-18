@@ -30,6 +30,9 @@ Model定义使用如下：
 @property (nonatomic, strong) Status *retweetedStatus;
 @end
 
+@JSONImplementation(Statuse)
+@end
+
 @JSONInterface(StatusResult) : NSObject
 @property (nonatomic, strong) JSONMutableArray(Status) *statuses;
 @property (nonatomic, strong) User *user;
@@ -43,7 +46,7 @@ Model定义使用如下：
 @property (nonatomic, strong) JSONMutableArray(NSDictionary) *dictionaryList;
 @end
 
-@implementation StatusResult
+@JSONImplementation(StatusResult)
 + (NSDictionary *)replacedKeyMap{ 
     NSMutableDictionary *map = [NSMutableDictionary dictionary];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
