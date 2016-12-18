@@ -8,6 +8,6 @@
 
 #import "Ad.h"
 
-@implementation Ad
+@JSONImplementation(Ad)
 
 @end

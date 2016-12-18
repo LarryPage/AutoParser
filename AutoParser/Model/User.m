@@ -8,7 +8,7 @@
 
 #import "User.h"
 
-@implementation User
+@JSONImplementation(User)
 
 #pragma mark override
 

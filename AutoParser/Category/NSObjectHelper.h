@@ -9,10 +9,42 @@
 #import <Foundation/Foundation.h>
 #import <objc/runtime.h>
 
-#define JSONInterface(class) protocol class <NSObject> @end\
-@interface AutuParser(class)<class> @end\
-@implementation AutuParser(class) @end\
-@interface class
+#define JSONInterface(klass) protocol klass <NSObject> @end\
+@interface klass
+
+#define JSONImplementation(klass) implementation klass \
+- (void)encodeWithCoder:(NSCoder *)aCoder{ \
+NSDictionary *propertysDic = [[self class] propertiesOfObject:self]; \
+[propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) { \
+id value=[self valueForKeyPath:key]; \
+if (value!=nil) { \
+[aCoder encodeObject:value forKey:key]; \
+} \
+}]; \
+} \
+- (id)initWithCoder:(NSCoder *)aDecoder \
+{ \
+self = [self init]; \
+NSDictionary *propertysDic = [[self class] propertiesOfObject:self]; \
+[propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) { \
+id value=[aDecoder decodeObjectForKey:key]; \
+if (value!=nil) { \
+[self setValue:value forKeyPath:key]; \
+} \
+}]; \
+return self; \
+} \
+- (id)copyWithZone:(NSZone *)zone{ \
+id copy=[[self class] new]; \
+NSDictionary *propertysDic = [[self class] propertiesOfObject:copy]; \
+[propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) { \
+id value=[self valueForKeyPath:key]; \
+if (value!=nil) { \
+[copy setValue:[value copyWithZone:zone] forKeyPath:key]; \
+} \
+}]; \
+return copy; \
+}
 
 #define JSONArray(type) NSArray<type>
 #define JSONMutableArray(type) NSMutableArray<type>
@@ -150,42 +182,4 @@
  *  @since 1.0
  */
 + (NSDictionary *) propertiesOfSubclass:(Class)klass;
-
-
-#pragma mark NSCoding
-/*!
- *  @brief 支持model存储序列化文件
- *
- *  @param aCoder  An archiver object.
- *
- *  @since 1.0
- */
-- (void)encodeWithCoder:(NSCoder *)aCoder;
-
-
-/*!
- *  @brief 支持序列化文件读取转为model
- *
- *  @param aDecoder  An unarchiver object.
- *
- *  @return self, initialized using the data in decoder.
- *
- *  @since 1.0
- */
-- (id)initWithCoder:(NSCoder *)aDecoder;
-
-
-#pragma mark NSCopying
-/*!
- *  @brief 支持model copy
- *
- *  @param zone  This parameter is ignored. Memory zones are no longer used by Objective-C.
- *
- *  @return Returns a new instance that’s a copy of the receiver.
- *
- *  @since 1.0
- */
-- (id)copyWithZone:(NSZone *)zone;
 @end
-
-@interface AutuParser:NSObject @end

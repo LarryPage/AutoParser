@@ -8,6 +8,6 @@
 
 #import "Status.h"
 
-@implementation Status
+@JSONImplementation(Status)
 
 @end

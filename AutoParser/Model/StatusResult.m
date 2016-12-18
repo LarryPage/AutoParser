@@ -8,7 +8,7 @@
 
 #import "StatusResult.h"
 
-@implementation StatusResult
+@JSONImplementation(StatusResult)
 
 #pragma mark override
 
