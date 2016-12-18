@@ -30,6 +30,7 @@ Model定义使用如下：
 @property (nonatomic, strong) Status *retweetedStatus;
 @end
 
+//宏JSONImplementation实现了NSCoding,NSCopying
 @JSONImplementation(Statuse)
 @end
 
