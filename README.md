@@ -102,3 +102,7 @@ ModelClass *copy=[record copy];//支持model NSCoding
 [NSKeyedArchiver archiveRootObject:copy toFile:path];//model存储序列化文件
 ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文件读取model
 ```
+
+## License
+
+AutoParser is released under the MIT license. See LICENSE for details.
