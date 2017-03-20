@@ -1,13 +1,11 @@
 # AutoParser
 特点： <br>
 基于ObjC Runtime,SafeCategory,NSCache实现自动解析<br>
-自动化Jons数据与Model互相解析 <br>
+自动化数据与Model互相解析 <br>
 一个NSObject Category类，only一个方法即可实现 <br>
-Josn与model互相转换，涉及到 <br>
-Josn与model数据：字典<-->模型 <br>
+数据与model互相转换，涉及到 :字典<-->模型 字典数组<-->模型数组 josn<-->模型 <br>
 Model层级嵌套：Model中属性为数组，NSArray中每个元素为另一model（字典数组<-->模型数组） <br>
 Josn层级嵌套，Mode对象josn化 <br>
-dic数组转model数组，支持递归(recursive) <br>
 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
@@ -21,8 +19,8 @@ dic数组转model数组，支持递归(recursive) <br>
 5.json文件 -> 模型 (模型的数组属性里面又装着模型)  用于mock <br>
 6.model存储序列化文件 <br>
 7.序列化文件读取model <br>
-8.dic数组转model数组<br>
-9.model数组转dic数组<br>
+8.字典数组转型数组<br>
+9.型数组转字典数组<br>
 
 ```
 Model定义使用如下：
@@ -84,6 +82,7 @@ NSString *jsonString=[record json];//model转json字符串
 
 NSMutableArray *models=[ModelClass modelsFromDics:dics];//dic数组转model数组
 NSMutableArray *dics=[ModelClass dicsFromModels:models];//dic数组转model数组
+
 /**
  在propertyName与josnKeyName不一致时，要在model.m实现的类方法
  返回replacedKeyMap：{propertyName:jsonKeyName}
