@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -19,11 +22,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lqs-0E-6BH">
+                                <rect key="frame" x="87.5" y="308.5" width="200" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="UZ1-sN-vcm"/>
                                     <constraint firstAttribute="width" constant="200" id="fB1-vD-hVA"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="模型定义-&gt;属性字典">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -32,11 +37,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PuK-BZ-JVg">
+                                <rect key="frame" x="32.5" y="208.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="50I-HE-BNC"/>
                                     <constraint firstAttribute="height" constant="50" id="TO3-CM-71z"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="字典--&gt;模型">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -45,11 +52,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IS7-4s-RT9">
+                                <rect key="frame" x="192.5" y="208.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ggr-Dg-b41"/>
                                     <constraint firstAttribute="width" constant="150" id="u9F-DZ-cOF"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="模型--&gt;字典">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -58,11 +67,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ine-Ge-ffq">
+                                <rect key="frame" x="32.5" y="408.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="I6J-t8-Bhr"/>
                                     <constraint firstAttribute="width" constant="150" id="crG-BN-MSE"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="模型--&gt;json">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -71,11 +82,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="exj-Pk-jEB">
+                                <rect key="frame" x="192.5" y="408.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="2yq-uA-bdK"/>
                                     <constraint firstAttribute="height" constant="50" id="8iM-g5-RID"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="json文件--&gt;模型">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -84,11 +97,13 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izm-fV-SUG">
+                                <rect key="frame" x="32.5" y="478.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="ooe-qi-E6n"/>
                                     <constraint firstAttribute="height" constant="50" id="pMl-FZ-7z4"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="模型序列化存储">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -96,17 +111,49 @@
                                     <action selector="modelSaveBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AWT-1o-lGq"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2K-mN-M7L">
+                                <rect key="frame" x="32.5" y="548.5" width="150" height="50"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ip4-5z-0Dg"/>
+                                    <constraint firstAttribute="width" constant="150" id="kBB-p6-uLO"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="字典数组--&gt;模型数组">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="dics2modelsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="N0L-Qg-gdW"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xkx-ft-FEv">
+                                <rect key="frame" x="192.5" y="478.5" width="150" height="50"/>
                                 <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="JAI-bR-Se4"/>
                                     <constraint firstAttribute="width" constant="150" id="Rqh-lU-B7k"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="模型序列化读取">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="modelReadBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vS6-Vj-9tH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bpD-Iv-HBe">
+                                <rect key="frame" x="192" y="548" width="150" height="50"/>
+                                <color key="backgroundColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vba-4v-sQk"/>
+                                    <constraint firstAttribute="width" constant="150" id="oNF-Lk-Ufg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="模型数组--&gt;字典数组">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="models2dicsBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="lmO-Zo-vUn"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,6 +165,7 @@
                             <constraint firstItem="izm-fV-SUG" firstAttribute="top" secondItem="ine-Ge-ffq" secondAttribute="bottom" constant="20" id="DRT-jf-CfY"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="bottom" secondItem="ine-Ge-ffq" secondAttribute="top" constant="-50" id="KpF-ro-hV3"/>
                             <constraint firstItem="izm-fV-SUG" firstAttribute="leading" secondItem="ine-Ge-ffq" secondAttribute="leading" id="MvB-fh-rR8"/>
+                            <constraint firstItem="bpD-Iv-HBe" firstAttribute="top" secondItem="xkx-ft-FEv" secondAttribute="bottom" constant="20" id="Nw7-Hu-nCr"/>
                             <constraint firstItem="IS7-4s-RT9" firstAttribute="bottom" secondItem="Lqs-0E-6BH" secondAttribute="top" constant="-50" id="OaF-4m-Ogh"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="top" secondItem="PuK-BZ-JVg" secondAttribute="bottom" constant="50" id="VBI-AA-eAm"/>
                             <constraint firstItem="xkx-ft-FEv" firstAttribute="leading" secondItem="exj-Pk-jEB" secondAttribute="leading" id="ipf-bn-IDl"/>
@@ -125,7 +173,10 @@
                             <constraint firstItem="exj-Pk-jEB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="jeB-8Q-mq7"/>
                             <constraint firstItem="xkx-ft-FEv" firstAttribute="top" secondItem="exj-Pk-jEB" secondAttribute="bottom" constant="20" id="kZr-Fw-Naf"/>
                             <constraint firstItem="IS7-4s-RT9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="80" id="m3y-Ei-VGV"/>
+                            <constraint firstItem="J2K-mN-M7L" firstAttribute="leading" secondItem="izm-fV-SUG" secondAttribute="leading" id="mKC-cz-hKx"/>
                             <constraint firstItem="Lqs-0E-6BH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mUO-hT-bzR"/>
+                            <constraint firstItem="J2K-mN-M7L" firstAttribute="top" secondItem="izm-fV-SUG" secondAttribute="bottom" constant="20" id="vPO-ZC-ry6"/>
+                            <constraint firstItem="bpD-Iv-HBe" firstAttribute="leading" secondItem="xkx-ft-FEv" secondAttribute="leading" id="xBN-05-fLo"/>
                         </constraints>
                     </view>
                 </viewController>

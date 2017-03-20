@@ -182,4 +182,26 @@ return copy; \
  *  @since 1.0
  */
 + (NSDictionary *) propertiesOfSubclass:(Class)klass;
+
+/*!
+ *  @brief dic数组转model数组
+ *
+ *  @param dics  dic数组
+ *
+ *  @return model数组
+ *
+ *  @since 2.0
+ */
++ (NSMutableArray *)modelsFromDics:(NSArray *)dics;
+
+/*!
+ *  @brief model数组转dic数组
+ *
+ *  @param models  model数组
+ *
+ *  @return model数组
+ *
+ *  @since 2.0
+ */
++ (NSMutableArray *)dicsFromModels:(NSArray *)models;
 @end

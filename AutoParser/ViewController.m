@@ -276,4 +276,56 @@
     }
 }
 
+/**
+ *  字典数组 -> 模型数组
+ */
+- (IBAction)dics2modelsBtn:(id)sender{
+    // 1.定义一个字典数组
+    NSDictionary *dic1= @{
+                         @"name" : @"Rose",
+                         @"avatar" : @"nami.png"
+                         };
+    NSDictionary *dic2=@{
+                         @"name" : @"Jack",
+                         @"avatar" : @"lufy.png",
+                         @"age" : @20,
+                         @"height" : @1.55,
+                         @"money" : @"100.9",
+                         @"sex" : @(1),
+                         @"gay" : @"true"
+                         };
+
+    NSArray *dics=[NSArray arrayWithObjects:dic1,dic2, nil];
+    
+    // 2.将字典数组转为模型数组
+    NSMutableArray *models=[User modelsFromDics:dics];
+    
+    // 3.打印模型数组中的模型属性
+    for (User *model in models) {
+        NSString *name = model.name;
+        NSString *icon = model.icon;
+        NSLog(@"name=%@, icon=%@", name, icon);
+    }
+}
+
+/**
+ *  模型数组 -> 字典数组
+ */
+- (IBAction)models2dicsBtn:(id)sender{
+    // 1.定义一个模型数组
+    User *user1 = [[User alloc] init];
+    user1.name = @"Rose";
+    user1.icon = @"nami.png";
+    
+    User *user2 = [[User alloc] init];
+    user2.name = @"Jack";
+    user2.icon = @"lufy.png";
+    
+    NSArray *models=[NSArray arrayWithObjects:user1,user2, nil];
+    
+    // 2.将模型数组转为字典数组
+    NSMutableArray *dics=[User dicsFromModels:models];
+    NSLog(@"%@", dics);
+}
+
 @end

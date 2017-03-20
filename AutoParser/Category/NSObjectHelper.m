@@ -631,4 +631,39 @@ static const char *getPropertyType(const char *attributes) {
     
     return properties;
 }
+
++ (NSMutableArray *)modelsFromDics:(NSArray *)dics
+{
+    if (!dics || [dics isKindOfClass:[NSNull class]]) return nil;
+    
+    //parse dictionaries to objects
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    for (id dic in dics) {
+        if ([dic isKindOfClass:[NSNull class]]) {
+            continue;
+        }
+        else if ([dic isKindOfClass:[NSDictionary class]]) {
+            [list safeAddObject:[[self alloc] initWithDic:dic]];
+        }
+    }
+    return list;
+}
+
++ (NSMutableArray *)dicsFromModels:(NSArray *)models
+{
+    if (!models || [models isKindOfClass:[NSNull class]]) return nil;
+    
+    //parse dictionaries to objects
+    NSMutableArray* list = [[NSMutableArray alloc] init];
+    for (id model in models) {
+        if ([model isKindOfClass:[NSNull class]]) {
+            continue;
+        }
+        else if([self instancesRespondToSelector:@selector(dic)]){
+            [list safeAddObject:[model dic]];
+        }
+    }
+    return list;
+}
+
 @end
