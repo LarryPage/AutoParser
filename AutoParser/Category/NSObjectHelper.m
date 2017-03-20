@@ -636,7 +636,6 @@ static const char *getPropertyType(const char *attributes) {
 {
     if (!dics || [dics isKindOfClass:[NSNull class]]) return nil;
     
-    //parse dictionaries to objects
     NSMutableArray* list = [[NSMutableArray alloc] init];
     for (id dic in dics) {
         if ([dic isKindOfClass:[NSNull class]]) {
@@ -653,7 +652,6 @@ static const char *getPropertyType(const char *attributes) {
 {
     if (!models || [models isKindOfClass:[NSNull class]]) return nil;
     
-    //parse dictionaries to objects
     NSMutableArray* list = [[NSMutableArray alloc] init];
     for (id model in models) {
         if ([model isKindOfClass:[NSNull class]]) {
