@@ -12,6 +12,15 @@
 
 #pragma mark override
 
+-(id) init{
+    self = [super init];
+    if (self) {
+        // Initialization code
+        self.height=@"173";//默认值
+    }
+    return self;
+}
+
 + (NSDictionary *)replacedKeyMap{
     NSMutableDictionary *map = [NSMutableDictionary dictionary];
     //[map safeSetObject:@"jsonKeyName" forKey:@"propertyName"];
