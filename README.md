@@ -4,6 +4,7 @@
 自动化数据与Model互相解析 <br>
 一个NSObject Category类，only一个方法即可实现 <br>
 数据与model互相转换，涉及到 :字典<-->模型 字典数组<-->模型数组 josn<-->模型 <br>
+数据与model互相转换,仅仅处理有效数值，不存在的key，value将不赋值 <br>
 Model层级嵌套：Model中属性为数组，NSArray中每个元素为另一model（字典数组<-->模型数组） <br>
 Josn层级嵌套，Mode对象josn化 <br>
 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K <br>
