@@ -25,5 +25,7 @@
 @property (nonatomic, assign) NSInteger sex;
 /** 同性恋 */
 @property (nonatomic, assign) BOOL gay;
+/** 此属性名将会被忽略：不进行字典和模型的转换 */
+@property (nonatomic, assign) BOOL fat;
 
 @end

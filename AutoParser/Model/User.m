@@ -33,4 +33,12 @@
 
 }
 
++ (NSArray *)ignoredParserPropertyNames{
+    return [NSArray arrayWithObjects:@"fat", nil];
+}
+
++ (NSArray *)ignoredCodingPropertyNames{
+    return [NSArray arrayWithObjects:@"fat", nil];
+}
+
 @end

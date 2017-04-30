@@ -15,10 +15,14 @@
 #define JSONImplementation(klass) implementation klass \
 - (void)encodeWithCoder:(NSCoder *)aCoder{ \
 NSDictionary *propertysDic = [[self class] propertiesOfObject:self]; \
+NSDictionary *ignoredPropertyNames = [[self class] ignoredPropertyNamesOfClass:[self class]]; \
 [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) { \
+PropertyNameState propertyNameState=[[ignoredPropertyNames valueForKey:key] integerValue]; \
+if (!(propertyNameState & PropertyNameStateIgnoredCoding)) { \
 id value=[self valueForKeyPath:key]; \
 if (value!=nil) { \
 [aCoder encodeObject:value forKey:key]; \
+} \
 } \
 }]; \
 } \
@@ -26,10 +30,14 @@ if (value!=nil) { \
 { \
 self = [self init]; \
 NSDictionary *propertysDic = [[self class] propertiesOfObject:self]; \
+NSDictionary *ignoredPropertyNames = [[self class] ignoredPropertyNamesOfClass:[self class]]; \
 [propertysDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) { \
+PropertyNameState propertyNameState=[[ignoredPropertyNames valueForKey:key] integerValue]; \
+if (!(propertyNameState & PropertyNameStateIgnoredCoding)) { \
 id value=[aDecoder decodeObjectForKey:key]; \
 if (value!=nil) { \
 [self setValue:value forKeyPath:key]; \
+} \
 } \
 }]; \
 return self; \
@@ -60,6 +68,16 @@ return copy; \
 @protocol NSMutableString <NSObject> @end
 @protocol NSDictionary <NSObject> @end
 @protocol NSMutableDictionary <NSObject> @end
+
+/*!
+ *  @brief 属性名被忽略类型
+ *  @since 4.0
+ */
+typedef NS_ENUM(NSInteger, PropertyNameState) {
+    PropertyNameStateDefault = 0,//属性名即进行dic、json和model的解析转换，又进行归档
+    PropertyNameStateIgnoredParser = 1 << 0,//属性名被忽略,不进行dic、json和model的解析转换
+    PropertyNameStateIgnoredCoding = 1 << 1//属性名被忽略,不进行归档
+};
 
 ///------------------------------
 /// @LiXiangCheng 20161022
@@ -149,6 +167,26 @@ return copy; \
 
 
 /*!
+ *  @brief 这个数组中的属性名将会被忽略：不进行dic、json和model的转换
+ *
+ *  @return 属性名数组ignoredPropertyNames：[propertyName]
+ *
+ *  @since 4.0
+ */
++ (NSArray *)ignoredParserPropertyNames;
+
+
+/*!
+ *  @brief 这个数组中的属性名将会被忽略：不进行归档
+ *
+ *  @return 属性名数组ignoredCodingPropertyNames：[propertyName]
+ *
+ *  @since 4.0
+ */
++ (NSArray *)ignoredCodingPropertyNames;
+
+
+/*!
  *  @brief model对象转属性字典
  *
  *  @param object  model对象
@@ -183,6 +221,19 @@ return copy; \
  */
 + (NSDictionary *) propertiesOfSubclass:(Class)klass;
 
+
+/*!
+ *  @brief model类的被忽略属性名称集，支持递归(recursive)
+ *
+ *  @param klass  model类
+ *
+ *  @return model的被忽略属性名称集
+ *
+ *  @since 4.0
+ */
++ (NSDictionary *) ignoredPropertyNamesOfClass:(Class)klass;
+
+
 /*!
  *  @brief dic数组转model数组
  *
@@ -194,6 +245,7 @@ return copy; \
  */
 + (NSMutableArray *)modelsFromDics:(NSArray *)dics;
 
+
 /*!
  *  @brief model数组转dic数组
  *
@@ -204,4 +256,5 @@ return copy; \
  *  @since 2.0
  */
 + (NSMutableArray *)dicsFromModels:(NSArray *)models;
+
 @end
