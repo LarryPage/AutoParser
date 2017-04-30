@@ -80,7 +80,8 @@ AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
 * [AutoParser](https://github.com/LarryPage/AutoParser)
 * [JOSN2MODEL](https://github.com/LarryPage/JOSN2Model)   下载<a href="http://adhoc.qiniudn.com/JOSN2Model.app.zip">JOSN2Model.app</a>
-* 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic() 两个方法，若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法
+* 1.项目引入AutoParser目录下的NSObjectHelper.h，NSObjectHelper.m 主要用到其中的 initWithDic() & dic(）两个方法 <br>若propertyName与josnKeyName不一致时，用到replacedKeyMap（）方法 <br>
+可指定model属性名被忽略,不进行dic、json和model的转换或者不进行归档，用到ignoredParserPropertyNames（）或者ignoredCodingPropertyNames（）方法 
 * 2.JOSN2Model.app 桌面app，将api返回的josn数据转成model.h,model.m，保存.h.m，并引入到项目中
 * 3.使用:
 ```
@@ -109,6 +110,20 @@ NSMutableArray *dics=[ModelClass dicsFromModels:models];//dic数组转model数�
     return @{@"propertyName" : @"jsonKeyName",
              @"icon" : @"avatar"
              };
+}
+
+/**
+ 可指定model属性名被忽略：不进行dic、json和model的转换，如model的fat属性
+ */
++ (NSArray *)ignoredParserPropertyNames{
+    return [NSArray arrayWithObjects:@"fat", nil];
+}
+
+/**
+ 可指定model属性名被忽略：不进行归档，如model的fat属性
+ */
++ (NSArray *)ignoredCodingPropertyNames{
+    return [NSArray arrayWithObjects:@"fat", nil];
 }
 
 NSDictionary *userPpropertiesDic = [NSObject propertiesOfClass:[ModelClass class]];//model定义->属性字典

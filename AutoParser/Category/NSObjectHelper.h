@@ -26,8 +26,7 @@ if (value!=nil) { \
 } \
 }]; \
 } \
-- (id)initWithCoder:(NSCoder *)aDecoder \
-{ \
+- (id)initWithCoder:(NSCoder *)aDecoder{ \
 self = [self init]; \
 NSDictionary *propertysDic = [[self class] propertiesOfObject:self]; \
 NSDictionary *ignoredPropertyNames = [[self class] ignoredPropertyNamesOfClass:[self class]]; \
