@@ -50,8 +50,12 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
 }
 
 - (id)initWithJson:(NSString *)json{
-    NSError *error;
     NSData *data= [json dataUsingEncoding:NSUTF8StringEncoding];
+    if (!data) {
+        return nil;
+    }
+    
+    NSError *error;
     id jsonData = [NSJSONSerialization
                    JSONObjectWithData:data
                    options:NSJSONReadingMutableContainers
