@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF02D7752134463E00FB27C9 /* NSDictionary+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = EF02D7732134463D00FB27C9 /* NSDictionary+Add.m */; };
 		EF2D782B1D941A67003AC4BE /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = EF2D782A1D941A67003AC4BE /* mock.json */; };
 		EF6131291DBB187F006F5004 /* NSArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF6131081DBB187F006F5004 /* NSArray+Safe.m */; };
 		EF61312B1DBB187F006F5004 /* NSMutableArray+Safe.m in Sources */ = {isa = PBXBuildFile; fileRef = EF61310C1DBB187F006F5004 /* NSMutableArray+Safe.m */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF02D7732134463D00FB27C9 /* NSDictionary+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Add.m"; sourceTree = "<group>"; };
+		EF02D7742134463E00FB27C9 /* NSDictionary+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Add.h"; sourceTree = "<group>"; };
 		EF2D782A1D941A67003AC4BE /* mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = mock.json; sourceTree = "<group>"; };
 		EF6131071DBB187F006F5004 /* NSArray+Safe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Safe.h"; sourceTree = "<group>"; };
 		EF6131081DBB187F006F5004 /* NSArray+Safe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Safe.m"; sourceTree = "<group>"; };
@@ -152,6 +155,8 @@
 		EF6131101DBB187F006F5004 /* NSDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				EF02D7742134463E00FB27C9 /* NSDictionary+Add.h */,
+				EF02D7732134463D00FB27C9 /* NSDictionary+Add.m */,
 				EF6131111DBB187F006F5004 /* NSDictionary+Safe.h */,
 				EF6131121DBB187F006F5004 /* NSDictionary+Safe.m */,
 				EF6131131DBB187F006F5004 /* NSMutableDictionary+Safe.h */,
@@ -380,6 +385,7 @@
 				EF61312D1DBB187F006F5004 /* NSDictionary+Safe.m in Sources */,
 				EF6131311DBB187F006F5004 /* NSObject+Safe.m in Sources */,
 				EF61314C1DBB63E1006F5004 /* NSSet+Safe.m in Sources */,
+				EF02D7752134463E00FB27C9 /* NSDictionary+Add.m in Sources */,
 				EF6131291DBB187F006F5004 /* NSArray+Safe.m in Sources */,
 				EFF4C30D1D8C2C94005655C1 /* Status.m in Sources */,
 				EF6131321DBB187F006F5004 /* NSMutableSet+Safe.m in Sources */,

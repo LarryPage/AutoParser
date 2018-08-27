@@ -15,6 +15,7 @@
 
 #import "NSData+Add.h"
 
+#import "NSDictionary+Add.h"
 #import "NSDictionary+Safe.h"
 #import "NSMutableDictionary+Safe.h"
 
