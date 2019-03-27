@@ -602,6 +602,10 @@ static const char *getPropertyType(const char *attributes) {
             // it's an ObjC id type:
             return "id";
         }
+        else if (attribute[0] == 'T' && attribute[1] == '@' && attribute[2] == '?' && strlen(attribute) == 3) {
+            // it's a block type:
+            return "block";
+        }
         else if (attribute[0] == 'T' && attribute[1] == '@') {
             // it's another ObjC object type:
             //return (const char *)[[NSData dataWithBytes:(attribute + 3) length:strlen(attribute) - 4] bytes];

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+typedef void(^SelectCompletion)(NSString *selectId);
 
 /** 用户模型 */
 @JSONInterface(User) : NSObject
@@ -27,5 +28,7 @@
 @property (nonatomic, assign) BOOL gay;
 /** 此属性名将会被忽略：不进行字典和模型的转换 */
 @property (nonatomic, assign) BOOL fat;
+/** block属性默认会被忽略 */
+@property (nonatomic, copy) SelectCompletion selectCompletion;
 
 @end
