@@ -11,9 +11,11 @@ Josn层级嵌套，Mode对象josn化 <br>
 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
+实现 memoryDB->serializable files、sqlite3
 
 项目用例： <br>
-<img src="https://github.com/LarryPage/AutoParser/blob/master/screen002.png" alt="enter image description here" width=320 /><br>
+![](/Volumes/MacintoshBD/Repository/IOS/AutoParser/AutoParser/screen002.png
+)<br>
 1.model定义->属性字典 <br>
 2.复杂的字典 -> 模型 (模型的数组属性里面又装着模型) <br>
 3.模型 (模型的数组属性里面又装着模型) -> 复杂的字典 <br>
@@ -74,7 +76,8 @@ Model定义使用如下：
 @end
 ```
 使用： <br>
-<img src="https://github.com/LarryPage/AutoParser/blob/master/screen003.png" alt="enter image description here" width=850 />
+![](/Volumes/MacintoshBD/Repository/IOS/AutoParser/AutoParser/screen003.png
+)
 
 AutoParser + JOSN2MODEL实现自动化解析流程
 ==========
@@ -135,3 +138,5 @@ ModelClass *read=[NSKeyedUnarchiver unarchiveObjectWithFile:path];//序列化文
 ## License
 
 AutoParser is released under the MIT license. See LICENSE for details.
+
+
