@@ -172,6 +172,20 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
     }];
 }
 
+//recursive
++ (id)getValueFromDic:(NSDictionary *)dic key:(NSString *)key{
+    NSMutableArray *keys=[NSMutableArray arrayWithArray:[key componentsSeparatedByString:@"."]];
+    if (keys.count>1) {
+        id jsonValue=[dic valueForKey:keys[0]];
+        id value=[NSDictionary safeDictionaryFromObject:jsonValue];
+        [keys removeObjectAtIndex:0];
+        return [self getValueFromDic:value key:[keys componentsJoinedByString:@"."]];
+    }
+    else{
+        return [dic valueForKey:key];;
+    }
+}
+
 + (void)KeyValueDecoderForObject:(id)object dic:(NSDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
     NSDictionary *keyMap = [self replacedKeyMapOfClass:[object class]];
@@ -180,7 +194,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
         PropertyNameState propertyNameState=[[ignoredPropertyNames valueForKey:key] integerValue];
         if (!(propertyNameState & PropertyNameStateIgnoredParser)) {
             NSString *jsonKeyName=(keyMap && [keyMap valueForKey:key])?[keyMap valueForKey:key]:key;
-            id jsonValue=[dic valueForKey:jsonKeyName];
+            //id jsonValue=[dic valueForKey:jsonKeyName];
+            //jsonKeyName支持education.teacherResume 多层级使用
+            id jsonValue=[self getValueFromDic:dic key:jsonKeyName];
             
             if (jsonValue && jsonValue!=[NSNull null]) {
                 if ([obj isEqualToString:NSStringFromClass([NSString class])]) {
@@ -391,7 +407,24 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
     }];
 }
 
-+ (void)KeyValueEncoderForObject:(id)object dic:(NSDictionary *)dic{
+//recursive
++ (void)setValue:(id)value forKey:(NSString *)key toDic:(NSMutableDictionary *)dic{
+    NSMutableArray *keys=[NSMutableArray arrayWithArray:[key componentsSeparatedByString:@"."]];
+    if (keys.count>1) {
+        if (![dic valueForKey:keys[0]]) {
+            [dic setValue:[NSMutableDictionary dictionary] forKey:keys[0]];
+        }
+        NSMutableDictionary *subDic=[dic valueForKey:keys[0]];
+        
+        [keys removeObjectAtIndex:0];
+        [self setValue:value forKey:[keys componentsJoinedByString:@"."] toDic:subDic];
+    }
+    else{
+        [dic setValue:value forKey:key];
+    }
+}
+
++ (void)KeyValueEncoderForObject:(id)object dic:(NSMutableDictionary *)dic{
     NSDictionary *propertysDic = [self propertiesOfObject:object];
     NSDictionary *keyMap = [self replacedKeyMapOfClass:[object class]];
     NSDictionary *ignoredPropertyNames = [self ignoredPropertyNamesOfClass:[object class]];
@@ -403,41 +436,59 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
             
             if (value) {
                 if ([obj isEqualToString:NSStringFromClass([NSString class])] || [obj isEqualToString:NSStringFromClass([NSMutableString class])]) {
-                    [dic setValue:value forKey:jsonKeyName];
+                    //[dic setValue:value forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:value forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:NSStringFromClass([NSDictionary class])] || [obj isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
-                    [dic setValue:value forKey:jsonKeyName];
+                    //[dic setValue:value forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:value forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:NSStringFromClass([NSNumber class])]) {
-                    [dic setValue:value forKey:jsonKeyName];
+                    //[dic setValue:value forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:value forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG_LNG]]
                          || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]
                          || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_LNG]]) {//NSInteger
                     NSInteger jsonValue=[value integerValue];
-                    [dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //[dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:@(jsonValue) forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG_LNG]]
                          || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_UINT]]
                          || [obj isEqualToString:[NSString stringWithFormat:@"%c",_C_ULNG]]) {//NSUInteger
                     NSUInteger jsonValue=[value integerValue];
-                    [dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //[dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:@(jsonValue) forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_DBL]]) {//double
                     double jsonValue=[value doubleValue];
-                    [dic setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName];
+                    //[dic setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_FLT]]) {//float
                     float jsonValue=[value floatValue];
-                    [dic setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName];
+                    //[dic setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:[NSString stringWithFormat:@"%0.6f", jsonValue] forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_INT]]) {//int
                     int jsonValue=[value intValue];
-                    [dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //[dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:@(jsonValue) forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:[NSString stringWithFormat:@"%c",_C_BOOL]]) {//bool,BOOL
                     bool jsonValue=[value boolValue];
-                    [dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //[dic setValue:@(jsonValue) forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:@(jsonValue) forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:NSStringFromClass([NSArray class])] || [obj isEqualToString:NSStringFromClass([NSMutableArray class])]) {
                     NSMutableArray *jsonValue=[NSMutableArray array];
@@ -447,7 +498,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                         NSObject *record = (NSObject *)obj;
                         [jsonValue safeAddObject:record];
                     }];
-                    [dic setValue:jsonValue forKey:jsonKeyName];
+                    //[dic setValue:jsonValue forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:NSStringFromClass([NSSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableSet class])]) {
                     NSMutableSet *jsonValue=[NSMutableSet set];
@@ -457,7 +510,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                         NSObject *record = (NSObject *)obj;
                         [jsonValue safeAddObject:record];
                     }];
-                    [dic setValue:jsonValue forKey:jsonKeyName];
+                    //[dic setValue:jsonValue forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                 }
                 else if ([obj isEqualToString:NSStringFromClass([NSOrderedSet class])] || [obj isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
                     NSMutableOrderedSet *jsonValue=[NSMutableOrderedSet orderedSet];
@@ -467,7 +522,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                         NSObject *record = (NSObject *)obj;
                         [jsonValue safeAddObject:record];
                     }];
-                    [dic setValue:jsonValue forKey:jsonKeyName];
+                    //[dic setValue:jsonValue forKey:jsonKeyName];
+                    //jsonKeyName支持education.teacherResume 多层级使用
+                    [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                 }
                 else{//自定义class
                     NSRegularExpression *arrayRegExp=[[NSRegularExpression alloc] initWithPattern:@"(?<=\\<).*?(?=\\>)" options:NSRegularExpressionCaseInsensitive error:nil];
@@ -505,7 +562,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                                 }
                             }];
                             
-                            [dic setValue:jsonValue forKey:jsonKeyName];
+                            //[dic setValue:jsonValue forKey:jsonKeyName];
+                            //jsonKeyName支持education.teacherResume 多层级使用
+                            [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                             return;
                         }
                         else if ([className isEqualToString:NSStringFromClass([NSSet class])] || [className isEqualToString:NSStringFromClass([NSMutableSet class])]) {
@@ -535,7 +594,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                                 }
                             }];
                             
-                            [dic setValue:jsonValue forKey:jsonKeyName];
+                            //[dic setValue:jsonValue forKey:jsonKeyName];
+                            //jsonKeyName支持education.teacherResume 多层级使用
+                            [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                             return;
                         }
                         else if ([className isEqualToString:NSStringFromClass([NSOrderedSet class])] || [className isEqualToString:NSStringFromClass([NSMutableOrderedSet class])]) {
@@ -565,7 +626,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                                 }
                             }];
                             
-                            [dic setValue:jsonValue forKey:jsonKeyName];
+                            //[dic setValue:jsonValue forKey:jsonKeyName];
+                            //jsonKeyName支持education.teacherResume 多层级使用
+                            [self setValue:jsonValue forKey:jsonKeyName toDic:dic];
                             return;
                         }
                     }
@@ -573,7 +636,9 @@ static NSCache *gIgnoredPropertyNamesOfClass = nil;
                     id aClass = NSClassFromString(obj);
                     if([aClass instancesRespondToSelector:@selector(dic)]){
                         NSDictionary *jsonValue=[value dic];
-                        [dic setValue:jsonValue?jsonValue:[NSDictionary dictionary] forKey:jsonKeyName];
+                        //[dic setValue:jsonValue?jsonValue:[NSDictionary dictionary] forKey:jsonKeyName];
+                        //jsonKeyName支持education.teacherResume 多层级使用
+                        [self setValue:jsonValue?jsonValue:[NSDictionary dictionary] forKey:jsonKeyName toDic:dic];
                     }
                 }
             }

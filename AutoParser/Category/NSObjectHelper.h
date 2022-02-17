@@ -86,6 +86,7 @@ typedef NS_ENUM(NSInteger, PropertyNameState) {
 /// 实现 dictionary<->model json<->model
 /// 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】
 /// 使用 WDSafeCategories保证每条数据安全解析
+/// jsonKeyName支持education.teacherResume 多层级使用(解析及反向)
 ///------------------------------
 
 /**
