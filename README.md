@@ -11,6 +11,7 @@ Josn层级嵌套，Mode对象josn化 <br>
 最大缓存500个Model定义,1个model按10个左右属性，大约0.1K，500个model点内存50K <br>
 实现 模型序列化存储、读取、copy 【NSCoding NSCopying】 <br>
 使用 WDSafeCategories保证每条数据安全解析 <br>
+jsonKeyName支持education.teacherResume 多层级使用(解析及反向) <br>
 实现 memoryDB->serializable files、sqlite3
 
 项目用例： <br>
