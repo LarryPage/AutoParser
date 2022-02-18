@@ -15,6 +15,7 @@
 
 /** 存放着某一页微博数据（里面都是Status模型） */
 @property (nonatomic, strong) JSONMutableArray(Status) *statuses;
+//@property (nonatomic, strong) NSMutableArray *statuses;
 /** 存放着一堆的广告数据（里面都是Ad模型） */
 @property (nonatomic, strong) JSONMutableArray(Ad) *ads;
 /** 总数 */

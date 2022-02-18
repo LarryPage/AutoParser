@@ -165,6 +165,15 @@ typedef NS_ENUM(NSInteger, PropertyNameState) {
  */
 + (NSDictionary *)replacedKeyMap;
 
+/*!
+ *  @brief 数组属性中需要转换的记录类型(优先使用模型定义中标明的数组属性元素类型，否则用此方法标明,同时解决swift引用类嵌套问题）
+ *
+ *  @return 字典中的key是数组属性名，value是数组中存放的数据类型（Class类型、NSNumber|NSString|NSMutableString|NSDictionary|NSMutableDictionary基础类型）
+ *
+ *  @since 5.0
+ */
++ (NSDictionary *)objectClassInArray;
+
 
 /*!
  *  @brief 这个数组中的属性名将会被忽略：不进行dic、json和model的转换
